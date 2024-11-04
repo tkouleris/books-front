@@ -1,0 +1,1 @@
+export const login_info = { url: '', method: 'post'};
