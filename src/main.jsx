@@ -5,6 +5,7 @@ import './adminlte.css'
 import PrivateRoutes from "./components/PrivateRoutes.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegistrationPage from "./pages/RegistrationPage.jsx";
+import Home from "./components/Home.jsx";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
     {
         path: '/register',
         element: <RegistrationPage />,
+        // errorElement: <NotFoundPage />
+    },
+    {
+        path: '/home',
+        element: <Home />,
         // errorElement: <NotFoundPage />
     },
     // {

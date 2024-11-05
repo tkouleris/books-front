@@ -1,5 +1,5 @@
 function SideNav() {
-    return ( <div>Hello World</div>)
+    return ( <div>Side Nav</div>)
 }
 
 export default SideNav;
