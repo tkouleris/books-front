@@ -1,5 +1,13 @@
+import {useEffect} from "react";
 
 function LoginPage(){
+
+    useEffect(() => {
+        let bodyElement = document.getElementsByTagName('body')[0];
+        bodyElement.className = "hold-transition login-page";
+
+    }, []);
+
     return <div className="ogin-box">
 
         <div className="login-box">
