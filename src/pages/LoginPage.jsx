@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {login} from "../utils/http.jsx";
 
 function LoginPage(){
     const navigate = useNavigate();
@@ -13,16 +14,22 @@ function LoginPage(){
     }, []);
 
     function handleLogin(){
+
         login({email: email, password: password}).then( (response) =>{
+            console.log(response)
             if(response.status === 1){
-                window.localStorage.setItem('username', response.data.username);
-                window.localStorage.setItem('token', response.data.token);
-                navigate("/dashboard");
+                window.localStorage.setItem('username', response.data.data.username);
+                window.localStorage.setItem('token',response.data.data.token);
+                // navigate("/dashboard");
                 return;
             }
 
             alert('error')
         })
+    }
+
+    function goToRegistration() {
+        navigate("/register");
     }
 
     return <div className="ogin-box">
@@ -36,9 +43,9 @@ function LoginPage(){
                 <div className="card-body login-card-body">
                     <p className="login-box-msg">Sign in to start your session</p>
 
-                    <form action="../../index3.html" method="post">
+                    {/*<form action="../../index3.html" method="post">*/}
                         <div className="input-group mb-3">
-                            <input type="email" className="form-control" placeholder="Email"/>
+                            <input type="email" className="form-control" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="Email"/>
                             <div className="input-group-append">
                                 <div className="input-group-text">
                                     <span className="fas fa-envelope"></span>
@@ -46,7 +53,7 @@ function LoginPage(){
                             </div>
                         </div>
                         <div className="input-group mb-3">
-                            <input type="password" className="form-control" placeholder="Password"/>
+                            <input type="password" className="form-control" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password"/>
                             <div className="input-group-append">
                                 <div className="input-group-text">
                                     <span className="fas fa-lock"></span>
@@ -64,18 +71,18 @@ function LoginPage(){
                             </div>
 
                             <div className="col-4">
-                                <button type="submit" className="btn btn-primary btn-block">Sign In</button>
+                                <button type="submit" className="btn btn-primary btn-block" onClick={handleLogin}>Sign In</button>
                             </div>
 
                         </div>
-                    </form>
+                    {/*</form>*/}
 
 
                     <p className="mb-1">
                         <a href="forgot-password.html">I forgot my password</a>
                     </p>
                     <p className="mb-0">
-                        <a href="register.html" className="text-center">Register a new membership</a>
+                        <a href="" className="text-center" onClick={goToRegistration}>Register a new membership</a>
                     </p>
                 </div>
             </div>
