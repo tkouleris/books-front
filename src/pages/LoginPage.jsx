@@ -1,12 +1,29 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 function LoginPage(){
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     useEffect(() => {
         let bodyElement = document.getElementsByTagName('body')[0];
         bodyElement.className = "hold-transition login-page";
 
     }, []);
+
+    function handleLogin(){
+        login({email: email, password: password}).then( (response) =>{
+            if(response.status === 1){
+                window.localStorage.setItem('username', response.data.username);
+                window.localStorage.setItem('token', response.data.token);
+                navigate("/dashboard");
+                return;
+            }
+
+            alert('error')
+        })
+    }
 
     return <div className="ogin-box">
 
