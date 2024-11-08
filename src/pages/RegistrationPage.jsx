@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {validateEmail, validatePassword} from "../utils/validators.jsx";
 import {registerUser} from "../utils/http.jsx";
 
@@ -8,6 +8,12 @@ export default function RegistrationPage() {
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+
+    useEffect(() => {
+        let bodyElement = document.getElementsByTagName('body')[0];
+        bodyElement.className = "register-page bg-body-secondary";
+
+    }, []);
 
     function goToLogin() {
         navigate("/login");
@@ -44,9 +50,8 @@ export default function RegistrationPage() {
     }
 
     return (
-        <body className={"register-page bg-body-secondary"}>
         <div className={"register-box"}>
-            <div className={"register-logo"}><a href="../index2.html"><b>Admin</b>LTE</a></div>
+            <div className={"register-logo"}><a href=""><b>My Books</b></a></div>
             <div className={"card"}>
                 <div className={"card-body register-card-body"}>
                     <p className={"register-box-msg"}>Register a new membership</p>
@@ -87,6 +92,5 @@ export default function RegistrationPage() {
                 </div>
             </div>
         </div>
-        </body>
     );
 }

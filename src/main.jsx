@@ -6,13 +6,18 @@ import PrivateRoutes from "./components/PrivateRoutes.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegistrationPage from "./pages/RegistrationPage.jsx";
 import Home from "./components/Home.jsx";
+import DashboardPage from "./pages/DashboardPage.jsx";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <PrivateRoutes />,
         children: [
-
+            {
+                path: '/dashboard',
+                element: <DashboardPage />,
+                // errorElement: <NotFoundPage />
+            },
         ],
     },
     {
@@ -30,11 +35,7 @@ const router = createBrowserRouter([
         element: <Home />,
         // errorElement: <NotFoundPage />
     },
-    // {
-    //     path: '/dashboard',
-    //     element: <DashboardPage />,
-    //     // errorElement: <NotFoundPage />
-    // },
+
     // {
     //     path: '/gameboard',
     //     element: <GameBoardPage />,
