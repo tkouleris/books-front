@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {login_info} from '../../config.jsx'
+import {login_info, register_info} from '../../config.jsx'
 
 export async function login(credentials){
     const response = await axios.post(
@@ -12,4 +12,19 @@ export async function login(credentials){
     }
 
     return {'status':1, 'data': response.data}
+}
+
+export async function registerUser(username, email, password){
+
+    const response = await axios.post(
+        register_info.url,
+        {
+            username: username,
+            email: email,
+            password: password
+        }
+    ).catch((e) => {
+        return {'data':{ 'message':e.response.data.message, 'status': false}};
+    });
+    return response.data
 }
