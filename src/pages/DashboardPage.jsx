@@ -11,6 +11,9 @@ function DashboardPage(){
     const [latestReadings, setLatestReadings] = useState()
 
     useEffect(() => {
+        let bodyElement = document.getElementsByTagName('body')[0];
+        bodyElement.className = "hold-transition sidebar-mini layout-fixed";
+
         fetchDashboard(window.localStorage.token, window.localStorage.username).then((response)=>{
             setCurrentReadings(response.data.data.current_readings)
             setLatestReadings(response.data.data.latest_readings)
