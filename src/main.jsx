@@ -7,6 +7,8 @@ import LoginPage from "./pages/LoginPage.jsx";
 import RegistrationPage from "./pages/RegistrationPage.jsx";
 import Home from "./components/Home.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
+import MyBooks from "./pages/MyBooks.jsx";
+import MyReadings from "./pages/MyReadings.jsx";
 
 const router = createBrowserRouter([
     {
@@ -16,6 +18,16 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <DashboardPage />,
+                // errorElement: <NotFoundPage />
+            },
+            {
+                path: '/books',
+                element: <MyBooks />,
+                // errorElement: <NotFoundPage />
+            },
+            {
+                path: '/readings',
+                element: <MyReadings />,
                 // errorElement: <NotFoundPage />
             },
         ],

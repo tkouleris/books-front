@@ -1,4 +1,15 @@
+import {useNavigate} from "react-router-dom";
+
 function SideNav() {
+    const navigate = useNavigate();
+
+    function goToMyBooks(){
+        navigate('/books')
+    }
+
+    function goToMyReadings(){
+        navigate('/readings')
+    }
 
     return <div>
         <aside className="main-sidebar sidebar-dark-primary elevation-4">
@@ -69,18 +80,18 @@ function SideNav() {
                         {/*    </ul>*/}
                         {/*</li>*/}
                         <li className="nav-item">
-                            <a href="pages/widgets.html" className="nav-link">
+                            <a href="" className="nav-link" onClick={goToMyBooks}>
                                 <i className="nav-icon fas fa-th"></i>
                                 <p>
-                                    Books
+                                    My Books
                                 </p>
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a href="pages/widgets.html" className="nav-link">
+                            <a href="" className="nav-link" onClick={goToMyReadings}>
                                 <i className="nav-icon fas fa-th"></i>
                                 <p>
-                                    Readings
+                                    My Readings
                                 </p>
                             </a>
                         </li>
