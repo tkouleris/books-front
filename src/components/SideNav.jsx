@@ -11,6 +11,10 @@ function SideNav() {
         navigate('/readings')
     }
 
+    function goToDashboard(){
+        navigate('/dashboard')
+    }
+
     return <div>
         <aside className="main-sidebar sidebar-dark-primary elevation-4">
 
@@ -79,6 +83,14 @@ function SideNav() {
                         {/*        </li>*/}
                         {/*    </ul>*/}
                         {/*</li>*/}
+                        <li className="nav-item">
+                            <a href="" className="nav-link" onClick={goToDashboard}>
+                                <i className="nav-icon fas fa-th"></i>
+                                <p>
+                                    My Dashboard
+                                </p>
+                            </a>
+                        </li>
                         <li className="nav-item">
                             <a href="" className="nav-link" onClick={goToMyBooks}>
                                 <i className="nav-icon fas fa-th"></i>
