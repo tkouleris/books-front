@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {login_info, register_info} from '../../config.jsx'
+import {dashboard_info, login_info, register_info} from '../../config.jsx'
 
 export async function login(credentials){
     const response = await axios.post(
@@ -27,4 +27,14 @@ export async function registerUser(username, email, password){
         return {'data':{ 'message':e.response.data.message, 'status': false}};
     });
     return response.data
+}
+
+export async function fetchDashboard(token, username){
+    let headers = {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    }
+    const response = await axios.get(dashboard_info.url + username, headers).catch((error)=>console.log(error))
+    return {'data': response.data}
 }
