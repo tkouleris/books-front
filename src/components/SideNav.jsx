@@ -85,7 +85,7 @@ function SideNav() {
                         {/*</li>*/}
                         <li className="nav-item">
                             <a href="" className="nav-link" onClick={goToDashboard}>
-                                <i className="nav-icon fas fa-th"></i>
+                                <i className="nav-icon fas fa-columns"></i>
                                 <p>
                                     My Dashboard
                                 </p>
@@ -93,7 +93,7 @@ function SideNav() {
                         </li>
                         <li className="nav-item">
                             <a href="" className="nav-link" onClick={goToMyBooks}>
-                                <i className="nav-icon fas fa-th"></i>
+                                <i className="nav-icon fas fa-book"></i>
                                 <p>
                                     My Books
                                 </p>
@@ -101,7 +101,7 @@ function SideNav() {
                         </li>
                         <li className="nav-item">
                             <a href="" className="nav-link" onClick={goToMyReadings}>
-                                <i className="nav-icon fas fa-th"></i>
+                                <i className="nav-icon fas fa-book-reader"></i>
                                 <p>
                                     My Readings
                                 </p>
