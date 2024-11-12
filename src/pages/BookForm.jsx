@@ -2,7 +2,7 @@ import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 
-function MyBooks(){
+function BookForm(){
     return <div className="wrapper">
         <Header/>
         <div className="content-wrapper">
@@ -10,19 +10,13 @@ function MyBooks(){
                 <div className="container-fluid">
                     <div className="row mb-2">
                         <div className="col-sm-6">
-
-                            <h1 className="m-0">My Books
-                                <button type="button" style={{marginLeft: 10}} className="btn btn-success">
-                                    <i className="fas fa-plus-square"></i>
-                                </button>
-                            </h1>
+                            <h1 className="m-0">My Books</h1>
                         </div>
                     </div>
-
                 </div>
             </div>
             <section className="content">
-            <div className="container-fluid">
+                <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-12">
 
@@ -86,4 +80,4 @@ function MyBooks(){
     </div>;
 }
 
-export default MyBooks;
+export default BookForm;
