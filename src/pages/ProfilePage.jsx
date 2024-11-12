@@ -2,7 +2,7 @@ import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 
-function ProfilePage(){
+function ProfilePage() {
     return <div className="wrapper">
         <Header/>
         <div className="content-wrapper">
@@ -66,10 +66,7 @@ function ProfilePage(){
                             </div>
 
 
-
-
                         </div>
-
 
 
                     </div>
