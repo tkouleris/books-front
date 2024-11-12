@@ -2,8 +2,13 @@ import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 function MyBooks(){
+    useEffect(() => {
+        document.title = 'My Books';
+    }, []);
+
     const navigate = useNavigate();
     function goToBookForm(){
         navigate('/book');
