@@ -9,6 +9,7 @@ import Home from "./components/Home.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
 import MyBooks from "./pages/MyBooks.jsx";
 import MyReadings from "./pages/MyReadings.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
             {
                 path: '/readings',
                 element: <MyReadings />,
+                // errorElement: <NotFoundPage />
+            },
+            {
+                path: '/profile',
+                element: <ProfilePage />,
                 // errorElement: <NotFoundPage />
             },
         ],

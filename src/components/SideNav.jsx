@@ -15,6 +15,10 @@ function SideNav() {
         navigate('/dashboard')
     }
 
+    function goToProfile(){
+        navigate('/profile')
+    }
+
     return <div>
         <aside className="main-sidebar sidebar-dark-primary elevation-4">
 
@@ -32,7 +36,7 @@ function SideNav() {
                         <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image"/>
                     </div>
                     <div className="info">
-                        <a href="#" className="d-block">{window.localStorage.username}</a>
+                        <a href="#" onClick={goToProfile} className="d-block">{window.localStorage.username}</a>
                     </div>
                 </div>
 
