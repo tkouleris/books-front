@@ -10,6 +10,7 @@ import DashboardPage from "./pages/DashboardPage.jsx";
 import MyBooks from "./pages/MyBooks.jsx";
 import MyReadings from "./pages/MyReadings.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
+import BookForm from "./pages/BookForm.jsx";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
             {
                 path: '/books',
                 element: <MyBooks />,
+                // errorElement: <NotFoundPage />
+            },
+            {
+                path: '/book',
+                element: <BookForm />,
                 // errorElement: <NotFoundPage />
             },
             {

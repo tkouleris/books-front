@@ -1,8 +1,14 @@
 import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
+import {useState} from "react";
 
 function BookForm(){
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [book_id, setBook_id] = useState(null)
+    const [file, setFile] = useState()
+
     return <div className="wrapper">
         <Header/>
         <div className="content-wrapper">
@@ -10,7 +16,7 @@ function BookForm(){
                 <div className="container-fluid">
                     <div className="row mb-2">
                         <div className="col-sm-6">
-                            <h1 className="m-0">My Books</h1>
+                            <h1 className="m-0">Book</h1>
                         </div>
                     </div>
                 </div>
@@ -22,23 +28,23 @@ function BookForm(){
 
                             <div className="card card-primary">
                                 <div className="card-header">
-                                    <h3 className="card-title">Quick Example</h3>
+                                    <h3 className="card-title"> </h3>
                                 </div>
 
                                 <form>
                                     <div className="card-body">
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputEmail1">Email address</label>
-                                            <input type="email" className="form-control" id="exampleInputEmail1"
-                                                   placeholder="Enter email"/>
+                                            <label htmlFor="exampleInputEmail1">Title</label>
+                                            <input type="text" className="form-control" value={title} id="book_title"
+                                                   placeholder="book title"/>
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputPassword1">Password</label>
-                                            <input type="password" className="form-control" id="exampleInputPassword1"
-                                                   placeholder="Password"/>
+                                            <label htmlFor="exampleFormControlTextarea1">Description</label>
+                                            <textarea className="form-control" value={description} id="exampleFormControlTextarea1"
+                                                      rows="3"></textarea>
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputFile">File input</label>
+                                            <label htmlFor="exampleInputFile">Book Cover</label>
                                             <div className="input-group">
                                                 <div className="custom-file">
                                                     <input type="file" className="custom-file-input"
@@ -51,16 +57,11 @@ function BookForm(){
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="form-check">
-                                            <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                                            <label className="form-check-label" htmlFor="exampleCheck1">Check me
-                                                out</label>
-                                        </div>
                                     </div>
 
 
                                     <div className="card-footer">
-                                        <button type="submit" className="btn btn-primary">Submit</button>
+                                        <button type="submit" className="btn btn-primary">Save</button>
                                     </div>
                                 </form>
                             </div>

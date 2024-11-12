@@ -1,8 +1,14 @@
 import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
+import {useNavigate} from "react-router-dom";
 
 function MyBooks(){
+    const navigate = useNavigate();
+    function goToBookForm(){
+        navigate('/book');
+    }
+
     return <div className="wrapper">
         <Header/>
         <div className="content-wrapper">
@@ -12,7 +18,7 @@ function MyBooks(){
                         <div className="col-sm-6">
 
                             <h1 className="m-0">My Books
-                                <button type="button" style={{marginLeft: 10}} className="btn btn-success">
+                                <button type="button" style={{marginLeft: 10}} onClick={goToBookForm} className="btn btn-success">
                                     <i className="fas fa-plus-square"></i>
                                 </button>
                             </h1>
