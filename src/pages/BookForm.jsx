@@ -2,12 +2,26 @@ import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useState} from "react";
+import {storeBook} from "../utils/http.jsx";
 
-function BookForm(){
+function BookForm() {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [book_id, setBook_id] = useState(null)
-    const [file, setFile] = useState()
+    // const [book_id, setBook_id] = useState(null)
+    const [file, setFile] = useState(null);
+
+    const handleFileChange = (e) => {
+        if (e.target.files) {
+            setFile(e.target.files[0]);
+        }
+    };
+
+    function handleStoreBook(){
+        console.log(title)
+        console.log(description)
+        console.log(file)
+        storeBook(window.localStorage.token, title, description, file).then(r => console.log(r));
+    }
 
     return <div className="wrapper">
         <Header/>
@@ -28,40 +42,47 @@ function BookForm(){
 
                             <div className="card card-primary">
                                 <div className="card-header">
-                                    <h3 className="card-title"> </h3>
+                                    <h3 className="card-title"></h3>
                                 </div>
 
                                 <form>
                                     <div className="card-body">
                                         <div className="form-group">
                                             <label htmlFor="exampleInputEmail1">Title</label>
-                                            <input type="text" className="form-control" value={title} id="book_title"
+                                            <input type="text" className="form-control" value={title}
+                                                   onChange={(e) => setTitle(e.target.value)} id="book_title"
                                                    placeholder="book title"/>
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="exampleFormControlTextarea1">Description</label>
-                                            <textarea className="form-control" value={description} id="exampleFormControlTextarea1"
+                                            <textarea className="form-control" value={description}
+                                                      onChange={(e) => setDescription(e.target.value)}
+                                                      id="exampleFormControlTextarea1"
                                                       rows="3"></textarea>
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="exampleInputFile">Book Cover</label>
                                             <div className="input-group">
-                                                <div className="custom-file">
-                                                    <input type="file" className="custom-file-input"
-                                                           id="exampleInputFile"/>
-                                                    <label className="custom-file-label" htmlFor="exampleInputFile">Choose
-                                                        file</label>
-                                                </div>
-                                                <div className="input-group-append">
-                                                    <span className="input-group-text">Upload</span>
-                                                </div>
+                                                <input id="file" type="file" onChange={handleFileChange}/>
                                             </div>
+                                            {/*<div className="input-group">*/}
+                                            {/*    <div className="custom-file">*/}
+                                            {/*        <input type="file" className="custom-file-input"*/}
+                                            {/*               onChange={handleFileChange}*/}
+                                            {/*               id="exampleInputFile"/>*/}
+                                            {/*        <label className="custom-file-label" htmlFor="exampleInputFile">Choose*/}
+                                            {/*            file</label>*/}
+                                            {/*    </div>*/}
+                                            {/*    /!*<div className="input-group-append">*!/*/}
+                                            {/*    /!*    <span className="input-group-text">Upload</span>*!/*/}
+                                            {/*    /!*</div>*!/*/}
+                                            {/*</div>*/}
                                         </div>
                                     </div>
 
 
                                     <div className="card-footer">
-                                        <button type="submit" className="btn btn-primary">Save</button>
+                                    <button type="button" className="btn btn-primary" onClick={handleStoreBook}>Save</button>
                                     </div>
                                 </form>
                             </div>

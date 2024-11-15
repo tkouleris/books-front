@@ -3,7 +3,6 @@ import {fetchDashboard} from "../utils/http.jsx";
 import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
-import {is_logged_in} from "../utils/helpers.jsx";
 
 function DashboardPage(){
 

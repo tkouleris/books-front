@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {dashboard_info, login_info, register_info} from '../../config.jsx'
+import {dashboard_info, login_info, register_info, store_book} from '../../config.jsx'
 
 export async function login(credentials){
     const response = await axios.post(
@@ -37,4 +37,24 @@ export async function fetchDashboard(token, username){
     }
     const response = await axios.get(dashboard_info.url + username, headers).catch((error)=>console.log(error))
     return {'data': response.data}
+}
+
+export async function storeBook(token, title, description, file){
+    let headers = {
+        headers: {
+            "content-type": "multipart/form-data",
+            'Authorization': 'Bearer ' + token
+        }
+    }
+    var formdata = new FormData();
+    //add three variable to form
+    formdata.append("title", title);
+    formdata.append("description", description);
+    formdata.append("file", file);
+    const response = await axios.post(
+        store_book.url,formdata, headers
+    ).catch((e) => {
+        return {'data':{ 'message':e.response.data.message, 'status': false}};
+    });
+    return response.data
 }
