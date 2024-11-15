@@ -3,8 +3,14 @@ import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useState} from "react";
 import {storeBook} from "../utils/http.jsx";
+import {useNavigate, useParams} from "react-router-dom";
 
 function BookForm() {
+    const navigate = useNavigate();
+
+    let { id } = useParams();
+
+
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     // const [book_id, setBook_id] = useState(null)
@@ -23,7 +29,9 @@ function BookForm() {
         if(file !== null){
             formdata.append("file", file);
         }
-        storeBook(window.localStorage.token, formdata).then(r => console.log(r));
+        storeBook(window.localStorage.token, formdata).then(r => {
+            navigate('/book/' + r.data.id)
+        });
     }
 
     return <div className="wrapper">

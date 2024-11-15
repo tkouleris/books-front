@@ -33,6 +33,11 @@ const router = createBrowserRouter([
                 // errorElement: <NotFoundPage />
             },
             {
+                path: '/book/:id',
+                element: <BookForm />,
+                // errorElement: <NotFoundPage />
+            },
+            {
                 path: '/readings',
                 element: <MyReadings />,
                 // errorElement: <NotFoundPage />
