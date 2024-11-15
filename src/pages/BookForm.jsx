@@ -17,10 +17,13 @@ function BookForm() {
     };
 
     function handleStoreBook(){
-        console.log(title)
-        console.log(description)
-        console.log(file)
-        storeBook(window.localStorage.token, title, description, file).then(r => console.log(r));
+        let formdata = new FormData();
+        formdata.append("title", title);
+        formdata.append("description", description);
+        if(file !== null){
+            formdata.append("file", file);
+        }
+        storeBook(window.localStorage.token, formdata).then(r => console.log(r));
     }
 
     return <div className="wrapper">

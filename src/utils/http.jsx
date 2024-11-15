@@ -39,18 +39,14 @@ export async function fetchDashboard(token, username){
     return {'data': response.data}
 }
 
-export async function storeBook(token, title, description, file){
+export async function storeBook(token, formdata){
     let headers = {
         headers: {
             "content-type": "multipart/form-data",
             'Authorization': 'Bearer ' + token
         }
     }
-    var formdata = new FormData();
-    //add three variable to form
-    formdata.append("title", title);
-    formdata.append("description", description);
-    formdata.append("file", file);
+
     const response = await axios.post(
         store_book.url,formdata, headers
     ).catch((e) => {
