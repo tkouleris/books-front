@@ -18,6 +18,7 @@ function BookForm() {
                 setTitle(res.data.data.title)
                 setBook_id(res.data.data.id)
                 setImageUrl(res.data.data.image)
+                document.title = 'My Books - ' + res.data.data.title;
             })
         }
     }, []);
