@@ -1,8 +1,8 @@
 import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
-import {useState} from "react";
-import {storeBook} from "../utils/http.jsx";
+import {useEffect, useState} from "react";
+import {fetchBook, storeBook} from "../utils/http.jsx";
 import {useNavigate, useParams} from "react-router-dom";
 
 function BookForm() {
@@ -10,10 +10,20 @@ function BookForm() {
 
     let { id } = useParams();
 
+    useEffect(() => {
+        if(id !== undefined){
+            fetchBook(window.localStorage.token, id).then(res=>{
+                console.log(res.data.data)
+                setDescription(res.data.data.description)
+                setTitle(res.data.data.title)
+                setBook_id(res.data.data.id)
+            })
+        }
+    }, []);
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    // const [book_id, setBook_id] = useState(null)
+    const [book_id, setBook_id] = useState(null)
     const [file, setFile] = useState(null);
 
     const handleFileChange = (e) => {

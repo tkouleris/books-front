@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {dashboard_info, login_info, register_info, store_book} from '../../config.jsx'
+import {dashboard_info, get_book, login_info, register_info, store_book} from '../../config.jsx'
 
 export async function login(credentials){
     const response = await axios.post(
@@ -53,4 +53,16 @@ export async function storeBook(token, formdata){
         return {'data':{ 'message':e.response.data.message, 'status': false}};
     });
     return response.data
+}
+
+export async function fetchBook(token, book_id){
+    let headers = {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    }
+    let url = get_book.url
+    url = url.replace(':id', book_id)
+    const response = await axios.get(url, headers).catch((error)=>console.log(error))
+    return {'data': response.data}
 }
