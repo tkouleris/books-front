@@ -17,6 +17,7 @@ function BookForm() {
                 setDescription(res.data.data.description)
                 setTitle(res.data.data.title)
                 setBook_id(res.data.data.id)
+                setImageUrl(res.data.data.image)
             })
         }
     }, []);
@@ -25,6 +26,7 @@ function BookForm() {
     const [description, setDescription] = useState('')
     const [book_id, setBook_id] = useState(null)
     const [file, setFile] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null)
 
     const handleFileChange = (e) => {
         if (e.target.files) {
@@ -42,6 +44,11 @@ function BookForm() {
         storeBook(window.localStorage.token, formdata).then(r => {
             navigate('/book/' + r.data.id)
         });
+    }
+
+    let book_image = <p>Image Not Found</p>
+    if(imageUrl !== null) {
+        book_image = <img style={{width: 300, height: '100%'}} src={imageUrl}/>
     }
 
     return <div className="wrapper">
@@ -86,18 +93,7 @@ function BookForm() {
                                             <div className="input-group">
                                                 <input id="file" type="file" onChange={handleFileChange}/>
                                             </div>
-                                            {/*<div className="input-group">*/}
-                                            {/*    <div className="custom-file">*/}
-                                            {/*        <input type="file" className="custom-file-input"*/}
-                                            {/*               onChange={handleFileChange}*/}
-                                            {/*               id="exampleInputFile"/>*/}
-                                            {/*        <label className="custom-file-label" htmlFor="exampleInputFile">Choose*/}
-                                            {/*            file</label>*/}
-                                            {/*    </div>*/}
-                                            {/*    /!*<div className="input-group-append">*!/*/}
-                                            {/*    /!*    <span className="input-group-text">Upload</span>*!/*/}
-                                            {/*    /!*</div>*!/*/}
-                                            {/*</div>*/}
+                                            {book_image}
                                         </div>
                                     </div>
 
