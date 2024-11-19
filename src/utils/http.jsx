@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {dashboard_info, get_book, login_info, register_info, store_book, get_books} from '../../config.jsx'
+import {dashboard_info, get_book, login_info, register_info, store_book, get_books, delete_book} from '../../config.jsx'
 
 export async function login(credentials){
     const response = await axios.post(
@@ -55,14 +55,14 @@ export async function storeBook(token, formdata){
     return response.data
 }
 
-export async function fetchBook(token, book_id){
+export async function fetchBook(token, bookId){
     let headers = {
         headers: {
             'Authorization': 'Bearer ' + token
         }
     }
     let url = get_book.url
-    url = url.replace(':id', book_id)
+    url = url.replace(':id', bookId)
     const response = await axios.get(url, headers).catch((error)=>console.log(error))
     return {'data': response.data}
 }
@@ -75,5 +75,17 @@ export async function fetchBooks(token){
     }
 
     const response = await axios.get(get_books.url, headers).catch((error)=>console.log(error))
+    return {'data': response.data}
+}
+
+export async function deleteBook(token, bookId){
+    let headers = {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    }
+    let url = delete_book.url
+    url = url.replace(':id', bookId)
+    const response = await axios.delete(url, headers).catch((error)=>console.log(error))
     return {'data': response.data}
 }

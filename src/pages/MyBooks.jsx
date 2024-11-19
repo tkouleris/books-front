@@ -20,6 +20,10 @@ function MyBooks(){
         navigate('/book');
     }
 
+    function goToEditBook(bookId){
+        navigate('/book/' + bookId);
+    }
+
     return <div className="wrapper">
         <Header/>
         <div className="content-wrapper">
@@ -57,7 +61,7 @@ function MyBooks(){
                                             {/*    {book.description}*/}
                                             {/*</div>*/}
                                             <div className="card-footer" style={{textAlign: 'right'}}>
-                                                <a className="btn btn-default" style={{marginRight: 5}} href="#">edit</a>
+                                                <a className="btn btn-default" onClick={() => goToEditBook(book.id)} style={{marginRight: 5}} href="#">edit</a>
                                                 <a className="btn btn-danger" href="#">delete</a>
                                             </div>
                                         </div>

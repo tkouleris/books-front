@@ -15,7 +15,7 @@ function BookForm() {
             fetchBook(window.localStorage.token, id).then(res=>{
                 setDescription(res.data.data.description)
                 setTitle(res.data.data.title)
-                setBook_id(res.data.data.id)
+                setBookId(res.data.data.id)
                 setImageUrl(res.data.data.image)
                 document.title = 'My Books - ' + res.data.data.title;
             })
@@ -24,7 +24,7 @@ function BookForm() {
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [book_id, setBook_id] = useState(null)
+    const [bookId, setBookId] = useState(null)
     const [file, setFile] = useState(null);
     const [imageUrl, setImageUrl] = useState(null)
 
@@ -41,8 +41,12 @@ function BookForm() {
         if(file !== null){
             formdata.append("file", file);
         }
+        if(bookId !== null){
+            formdata.append("book_id", bookId);
+        }
         storeBook(window.localStorage.token, formdata).then(r => {
             navigate('/book/' + r.data.id)
+            window.location.reload()
         });
     }
 
