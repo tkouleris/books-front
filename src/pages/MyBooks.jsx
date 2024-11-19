@@ -53,11 +53,12 @@ function MyBooks(){
                                             <div className="card-body">
                                                 <img style={{width: '100%', height:400}} src={book.image} />
                                             </div>
-                                            <div className="card-footer">
-                                                {book.description}
-                                            </div>
-                                            <div className="card-footer">
-                                                <button>test</button>
+                                            {/*<div className="card-footer">*/}
+                                            {/*    {book.description}*/}
+                                            {/*</div>*/}
+                                            <div className="card-footer" style={{textAlign: 'right'}}>
+                                                <a className="btn btn-default" style={{marginRight: 5}} href="#">edit</a>
+                                                <a className="btn btn-danger" href="#">delete</a>
                                             </div>
                                         </div>
                                         </div>
