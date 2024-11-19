@@ -13,7 +13,6 @@ function BookForm() {
     useEffect(() => {
         if(id !== undefined){
             fetchBook(window.localStorage.token, id).then(res=>{
-                console.log(res.data.data)
                 setDescription(res.data.data.description)
                 setTitle(res.data.data.title)
                 setBook_id(res.data.data.id)
