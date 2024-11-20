@@ -61,8 +61,10 @@ function MyBooks(){
                                             {/*    {book.description}*/}
                                             {/*</div>*/}
                                             <div className="card-footer" style={{textAlign: 'right'}}>
-                                                <a className="btn btn-default" onClick={() => goToEditBook(book.id)} style={{marginRight: 5}} href="#">edit</a>
-                                                <a className="btn btn-danger" href="#">delete</a>
+                                                <a className="btn btn-default" onClick={() => goToEditBook(book.id)}
+                                                   style={{marginRight: 5}} href="#"><i className="fas fa-edit"></i></a>
+                                                <a className="btn btn-danger" href="#"><i className="fa fa-trash"
+                                                                                          aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         </div>
