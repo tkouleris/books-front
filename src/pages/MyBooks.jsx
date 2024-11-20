@@ -3,7 +3,7 @@ import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {fetchBooks} from "../utils/http.jsx";
+import {deleteBook, fetchBooks} from "../utils/http.jsx";
 
 function MyBooks(){
     const [books, setBooks] = useState([])
@@ -18,6 +18,12 @@ function MyBooks(){
     const navigate = useNavigate();
     function goToBookForm(){
         navigate('/book');
+    }
+
+    function deleteHandler(id){
+        if(confirm('Are you sure you want to delete this book?')){
+            deleteBook(window.localStorage.token, id).then(res =>{ console.log(res.data.success)})
+        }
     }
 
     function goToEditBook(bookId){
@@ -63,8 +69,8 @@ function MyBooks(){
                                             <div className="card-footer" style={{textAlign: 'right'}}>
                                                 <a className="btn btn-default" onClick={() => goToEditBook(book.id)}
                                                    style={{marginRight: 5}} href="#"><i className="fas fa-edit"></i></a>
-                                                <a className="btn btn-danger" href="#"><i className="fa fa-trash"
-                                                                                          aria-hidden="true"></i></a>
+                                                <a className="btn btn-danger" href="#" onClick={() => deleteHandler(book.id)}>
+                                                    <i className="fa fa-trash" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                         </div>
