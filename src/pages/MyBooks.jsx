@@ -10,7 +10,6 @@ function MyBooks(){
     useEffect(() => {
         document.title = 'My Books';
         fetchBooks(window.localStorage.token).then(res =>{
-            console.log(res.data.data)
             setBooks(res.data.data)
         })
     }, []);
@@ -22,7 +21,13 @@ function MyBooks(){
 
     function deleteHandler(id){
         if(confirm('Are you sure you want to delete this book?')){
-            deleteBook(window.localStorage.token, id).then(res =>{ console.log(res.data.success)})
+            deleteBook(window.localStorage.token, id).then(res =>{
+                if(res.data.success){
+                    fetchBooks(window.localStorage.token).then(res =>{
+                        setBooks(res.data.data)
+                    })
+                }
+            })
         }
     }
 
