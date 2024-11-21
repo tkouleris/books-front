@@ -3,6 +3,9 @@ import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useEffect, useState} from "react";
 import {fetchBooks} from "../utils/http.jsx";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 function ReadingsForm(){
     const [started, setStarted] = useState()
@@ -58,55 +61,47 @@ function ReadingsForm(){
                                         </div>
                                         <div className="form-group">
                                             <label>Started:</label>
-                                            <div className="input-group date" id="reservationdate"
-                                                 data-target-input="nearest">
-                                                <input type="text" className="form-control datetimepicker-input"
-                                                       data-target="#reservationdate"/>
-                                                <div className="input-group-append" data-target="#reservationdate"
-                                                     data-toggle="datetimepicker">
-                                                    <div className="input-group-text"><i className="fa fa-calendar"></i>
-                                                    </div>
-                                                </div>
+                                            <div>
+                                                <DatePicker selected={started} onChange={(date) => setStarted(date)}/>
                                             </div>
                                         </div>
                                         <div className="form-group">
                                             <label>Ended:</label>
-                                            <div className="input-group date" id="reservationdate"
-                                                 data-target-input="nearest">
-                                                <input type="text" className="form-control datetimepicker-input"
-                                                       data-target="#reservationdate"/>
-                                                <div className="input-group-append" data-target="#reservationdate"
-                                                     data-toggle="datetimepicker">
-                                                    <div className="input-group-text"><i className="fa fa-calendar"></i>
-                                                    </div>
-                                                </div>
+                                            <div>
+                                                <DatePicker selected={ended} onChange={(date) => setEnded(date)}/>
                                             </div>
                                         </div>
-                                        {/*    <div className="form-group">*/}
-                                        {/*        <label htmlFor="exampleInputEmail1">Title</label>*/}
-                                        {/*        <input type="text" className="form-control" value={title}*/}
-                                        {/*               onChange={(e) => setTitle(e.target.value)} id="book_title"*/}
-                                        {/*               placeholder="book title"/>*/}
-                                        {/*    </div>*/}
-                                        {/*    <div className="form-group">*/}
-                                        {/*        <label htmlFor="exampleFormControlTextarea1">Description</label>*/}
-                                        {/*        <textarea className="form-control" value={description}*/}
-                                        {/*                  onChange={(e) => setDescription(e.target.value)}*/}
-                                        {/*                  id="exampleFormControlTextarea1"*/}
-                                        {/*                  rows="3"></textarea>*/}
-                                        {/*    </div>*/}
-                                        {/*    <div className="form-group">*/}
-                                        {/*        <label htmlFor="exampleInputFile">Book Cover</label>*/}
-                                        {/*        <div className="input-group">*/}
-                                        {/*            <input id="file" type="file" onChange={handleFileChange}/>*/}
+                                        {/*<div className="form-group">*/}
+                                        {/*    <label>Started:</label>*/}
+                                        {/*    <div className="input-group date" id="reservationdate"*/}
+                                        {/*         data-target-input="nearest">*/}
+                                        {/*        <input type="text" className="form-control datetimepicker-input"*/}
+                                        {/*               data-target="#reservationdate"/>*/}
+                                        {/*        <div className="input-group-append" data-target="#reservationdate"*/}
+                                        {/*             data-toggle="datetimepicker">*/}
+                                        {/*            <div className="input-group-text"><i className="fa fa-calendar"></i>*/}
+                                        {/*            </div>*/}
                                         {/*        </div>*/}
-                                        {/*        {book_image}*/}
                                         {/*    </div>*/}
+                                        {/*</div>*/}
+                                        {/*<div className="form-group">*/}
+                                        {/*    <label>Ended:</label>*/}
+                                        {/*    <div className="input-group date" id="reservationdate"*/}
+                                        {/*         data-target-input="nearest">*/}
+                                        {/*        <input type="text" className="form-control datetimepicker-input"*/}
+                                        {/*               data-target="#reservationdate"/>*/}
+                                        {/*        <div className="input-group-append" data-target="#reservationdate"*/}
+                                        {/*             data-toggle="datetimepicker">*/}
+                                        {/*            <div className="input-group-text"><i className="fa fa-calendar"></i>*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</div>*/}
                                     </div>
 
 
                                     <div className="card-footer">
-                                        <button type="button" className="btn btn-primary" >Save</button>
+                                        <button type="button" className="btn btn-primary">Save</button>
                                     </div>
                                 </form>
                             </div>
