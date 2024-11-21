@@ -6,7 +6,10 @@ import {useEffect, useState} from "react";
 import {deleteBook, fetchBooks} from "../utils/http.jsx";
 
 function MyBooks(){
+    const navigate = useNavigate();
+
     const [books, setBooks] = useState([])
+
     useEffect(() => {
         document.title = 'My Books';
         fetchBooks(window.localStorage.token).then(res =>{
@@ -14,7 +17,7 @@ function MyBooks(){
         })
     }, []);
 
-    const navigate = useNavigate();
+
     function goToBookForm(){
         navigate('/book');
     }
