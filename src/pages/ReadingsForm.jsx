@@ -8,8 +8,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function ReadingsForm(){
-    const [started, setStarted] = useState()
-    const [ended, setEnded] = useState()
+    const [started, setStarted] = useState(null)
+    const [ended, setEnded] = useState(null)
     const [bookId, setBookId] = useState()
     const [readingId, setReadingId] = useState()
     const [books, setBooks] = useState([])
@@ -18,11 +18,15 @@ function ReadingsForm(){
         document.title = 'My Books';
         fetchBooks(window.localStorage.token).then(res =>{
             setBooks(res.data.data)
+            setBookId(res.data.data[0].id)
         })
     }, []);
 
-    function handle(id){
-        console.log(id);
+    function handleSubmit(){
+        console.log(started)
+        console.log(ended)
+        console.log(bookId)
+        console.log(readingId)
     }
 
     return <div className="wrapper">
@@ -53,6 +57,7 @@ function ReadingsForm(){
                                             <label htmlFor="exampleSelectRounded0">Book </label>
                                             <select className="custom-select rounded-0"
                                                     id="slc_book"
+                                                    onChange={e => setBookId(e.target.value)}
                                             >
                                                 {
                                                     books.map((book, index) => {
@@ -69,18 +74,26 @@ function ReadingsForm(){
                                         <div className="form-group">
                                             <label>Started:</label>
                                             <div>
-                                                <DatePicker selected={started} onChange={(date) => setStarted(date)}/>
+                                                <DatePicker
+                                                    selected={started}
+                                                    onChange={(date) => setStarted(date)}
+                                                    dateFormat="dd/MM/yyyy"
+                                                />
                                             </div>
                                         </div>
                                         <div className="form-group">
                                             <label>Ended:</label>
                                             <div>
-                                                <DatePicker selected={ended} onChange={(date) => setEnded(date)}/>
+                                                <DatePicker
+                                                    selected={ended}
+                                                    onChange={(date) => setEnded(date)}
+                                                    dateFormat="dd/MM/yyyy"
+                                                />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="card-footer">
-                                        <button type="button" className="btn btn-primary">Save</button>
+                                        <button type="button" onClick={handleSubmit} className="btn btn-primary">Save</button>
                                     </div>
                                 </form>
                             </div>
