@@ -11,8 +11,10 @@ function ReadingsForm(){
     const [started, setStarted] = useState(null)
     const [ended, setEnded] = useState(null)
     const [bookId, setBookId] = useState()
-    const [readingId, setReadingId] = useState()
+    const [readingId, setReadingId] = useState(null)
     const [books, setBooks] = useState([])
+
+    const zeroPad = (num, places) => String(num).padStart(places, '0')
 
     useEffect(() => {
         document.title = 'My Books';
@@ -23,10 +25,18 @@ function ReadingsForm(){
     }, []);
 
     function handleSubmit(){
-        console.log(started)
-        console.log(ended)
-        console.log(bookId)
-        console.log(readingId)
+        let data = []
+        if(started !== null){
+            data['started'] = started.getFullYear() +"-"+zeroPad((started.getMonth() + 1),2)+"-"+zeroPad(started.getDate(),2)
+        }
+        if(ended !== null){
+            data['ended'] = ended.getFullYear() +"-"+zeroPad((ended.getMonth() + 1),2)+"-"+zeroPad(ended.getDate(),2)
+        }
+        data['bookId'] = bookId
+        if(readingId !== null){
+            data['reading_id'] = readingId
+        }
+        console.log(data)
     }
 
     return <div className="wrapper">
