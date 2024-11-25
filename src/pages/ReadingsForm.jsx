@@ -2,7 +2,7 @@ import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useEffect, useState} from "react";
-import {fetchBooks} from "../utils/http.jsx";
+import {fetchBooks, storeReading} from "../utils/http.jsx";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -25,18 +25,18 @@ function ReadingsForm(){
     }, []);
 
     function handleSubmit(){
-        let data = []
+        let data = {}
         if(started !== null){
             data['started'] = started.getFullYear() +"-"+zeroPad((started.getMonth() + 1),2)+"-"+zeroPad(started.getDate(),2)
         }
         if(ended !== null){
             data['ended'] = ended.getFullYear() +"-"+zeroPad((ended.getMonth() + 1),2)+"-"+zeroPad(ended.getDate(),2)
         }
-        data['bookId'] = bookId
+        data['book_id'] = bookId
         if(readingId !== null){
             data['reading_id'] = readingId
         }
-        console.log(data)
+        storeReading(window.localStorage.token, data).then(r => console.log(r.data))
     }
 
     return <div className="wrapper">

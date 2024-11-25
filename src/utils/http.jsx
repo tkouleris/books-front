@@ -1,5 +1,14 @@
 import axios from 'axios'
-import {dashboard_info, get_book, login_info, register_info, store_book, get_books, delete_book} from '../../config.jsx'
+import {
+    dashboard_info,
+    get_book,
+    login_info,
+    register_info,
+    store_book,
+    get_books,
+    delete_book,
+    store_reading
+} from '../../config.jsx'
 
 export async function login(credentials){
     const response = await axios.post(
@@ -88,4 +97,20 @@ export async function deleteBook(token, bookId){
     url = url.replace(':id', bookId)
     const response = await axios.delete(url, headers).catch((error)=>console.log(error))
     return {'data': response.data}
+}
+
+export async function storeReading(token, data){
+    let headers = {
+        headers: {
+            "content-type": "application/json",
+            'Authorization': 'Bearer ' + token
+        }
+    }
+
+    const response = await axios.post(
+        store_reading.url,data, headers
+    ).catch((e) => {
+        return {'data':{ 'message':e.response.data.message, 'status': false}};
+    });
+    return response.data
 }
