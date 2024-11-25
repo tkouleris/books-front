@@ -6,8 +6,11 @@ import {fetchBooks, storeReading} from "../utils/http.jsx";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import {useNavigate} from "react-router-dom";
 
 function ReadingsForm(){
+    const navigate = useNavigate();
+
     const [started, setStarted] = useState(null)
     const [ended, setEnded] = useState(null)
     const [bookId, setBookId] = useState()
@@ -26,9 +29,10 @@ function ReadingsForm(){
 
     function handleSubmit(){
         let data = {}
-        if(started !== null){
-            data['started'] = started.getFullYear() +"-"+zeroPad((started.getMonth() + 1),2)+"-"+zeroPad(started.getDate(),2)
+        if(started == null){
+            alert("Please enter a valid started")
         }
+        data['started'] = started.getFullYear() +"-"+zeroPad((started.getMonth() + 1),2)+"-"+zeroPad(started.getDate(),2)
         if(ended !== null){
             data['ended'] = ended.getFullYear() +"-"+zeroPad((ended.getMonth() + 1),2)+"-"+zeroPad(ended.getDate(),2)
         }
@@ -36,7 +40,9 @@ function ReadingsForm(){
         if(readingId !== null){
             data['reading_id'] = readingId
         }
-        storeReading(window.localStorage.token, data).then(r => console.log(r.data))
+        storeReading(window.localStorage.token, data).then(r =>{
+            navigate('/readings');
+        })
     }
 
     return <div className="wrapper">
