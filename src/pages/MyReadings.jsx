@@ -45,6 +45,10 @@ function MyReadings(){
 
                         {
                             readings.map((reading, index) => {
+                                let ended = 'currently reading'
+                                if(reading.ended !== ' - '){
+                                    ended = reading.ended
+                                }
                                 return (
                                     <div className="col-md-3">
                                         <div className="card card-primary">
@@ -54,13 +58,25 @@ function MyReadings(){
                                             {/*<div className="card-body">*/}
                                             {/*    <img style={{width: '100%', height: 400}} src={book.image}/>*/}
                                             {/*</div>*/}
-                                            {/*<div className="card-footer" style={{textAlign: 'right'}}>*/}
-                                            {/*    <a className="btn btn-default" onClick={() => goToEditBook(book.id)}*/}
-                                            {/*       style={{marginRight: 5}} href="#"><i className="fas fa-edit"></i></a>*/}
-                                            {/*    <a className="btn btn-danger" href="#"*/}
-                                            {/*       onClick={() => deleteHandler(book.id)}>*/}
-                                            {/*        <i className="fa fa-trash" aria-hidden="true"></i></a>*/}
-                                            {/*</div>*/}
+                                            <div className="card-footer" style={{textAlign: 'right'}}>
+                                                <div className="row">
+                                                    <div className="col-sm-12" style={{textAlign: 'left',}}>
+                                                        <b>started:</b> {reading.started}
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col-sm-8" style={{textAlign: 'left',paddingTop: 10}}>
+                                                        <b>ended:</b> {ended}
+                                                    </div>
+                                                    <div className="col-sm-4">
+                                                        <a className="btn btn-default"
+                                                           style={{marginRight: 5}} href="#"><i
+                                                            className="fas fa-edit"></i></a>
+                                                        <a className="btn btn-danger" href="#">
+                                                            <i className="fa fa-trash" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 )
@@ -74,7 +90,7 @@ function MyReadings(){
         <SideNav/>
         <Footer/>
     </div>
-;
+        ;
 }
 
 export default MyReadings
