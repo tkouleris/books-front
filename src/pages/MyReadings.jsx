@@ -55,9 +55,9 @@ function MyReadings(){
                                             <div className="card-header">
                                                 <h3 className="card-title">{reading.book.title}</h3>
                                             </div>
-                                            {/*<div className="card-body">*/}
-                                            {/*    <img style={{width: '100%', height: 400}} src={book.image}/>*/}
-                                            {/*</div>*/}
+                                            <div className="card-body">
+                                                <img style={{width: '100%', height: 400}} src={reading.book.image}/>
+                                            </div>
                                             <div className="card-footer" style={{textAlign: 'right'}}>
                                                 <div className="row">
                                                     <div className="col-sm-12" style={{textAlign: 'left',}}>
