@@ -2,9 +2,16 @@ import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {fetchReadings} from "../utils/http.jsx";
 
 function MyReadings(){
     const navigate = useNavigate();
+    const [readings, setReadings] = useState([])
+
+    useEffect(() => {
+        fetchReadings(window.localStorage.token).then(res =>{setReadings(res.data.data)})
+    }, []);
 
 
 
@@ -33,12 +40,41 @@ function MyReadings(){
                 </div>
             </div>
             <section className="content">
-                My Readings
+                <div className="container-fluid">
+                    <div className="row">
+
+                        {
+                            readings.map((reading, index) => {
+                                return (
+                                    <div className="col-md-3">
+                                        <div className="card card-primary">
+                                            <div className="card-header">
+                                                <h3 className="card-title">{reading.book.title}</h3>
+                                            </div>
+                                            {/*<div className="card-body">*/}
+                                            {/*    <img style={{width: '100%', height: 400}} src={book.image}/>*/}
+                                            {/*</div>*/}
+                                            {/*<div className="card-footer" style={{textAlign: 'right'}}>*/}
+                                            {/*    <a className="btn btn-default" onClick={() => goToEditBook(book.id)}*/}
+                                            {/*       style={{marginRight: 5}} href="#"><i className="fas fa-edit"></i></a>*/}
+                                            {/*    <a className="btn btn-danger" href="#"*/}
+                                            {/*       onClick={() => deleteHandler(book.id)}>*/}
+                                            {/*        <i className="fa fa-trash" aria-hidden="true"></i></a>*/}
+                                            {/*</div>*/}
+                                        </div>
+                                    </div>
+                                )
+                            })
+
+                        }
+                    </div>
+                </div>
             </section>
         </div>
         <SideNav/>
         <Footer/>
-    </div>;
+    </div>
+;
 }
 
 export default MyReadings

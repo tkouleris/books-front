@@ -7,8 +7,10 @@ import {
     store_book,
     get_books,
     delete_book,
-    store_reading
+    store_reading,
+    all_readings
 } from '../../config.jsx'
+
 
 export async function login(credentials){
     const response = await axios.post(
@@ -113,4 +115,15 @@ export async function storeReading(token, data){
         return {'data':{ 'message':e.response.data.message, 'status': false}};
     });
     return response.data
+}
+
+export async function fetchReadings(token){
+    let headers = {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    }
+
+    const response = await axios.get(all_readings.url, headers).catch((error)=>console.log(error))
+    return {'data': response.data}
 }
