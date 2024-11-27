@@ -12,6 +12,7 @@ import MyReadings from "./pages/MyReadings.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import BookForm from "./pages/BookForm.jsx";
 import ReadingsForm from "./pages/ReadingsForm.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 const router = createBrowserRouter([
     {
@@ -68,6 +69,11 @@ const router = createBrowserRouter([
     {
         path: '/home',
         element: <Home />,
+        // errorElement: <NotFoundPage />
+    },
+    {
+        path: '/404',
+        element: <NotFound />,
         // errorElement: <NotFoundPage />
     },
 
