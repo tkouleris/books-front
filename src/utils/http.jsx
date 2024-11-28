@@ -74,7 +74,9 @@ export async function fetchBook(token, bookId){
     }
     let url = get_book.url
     url = url.replace(':id', bookId)
-    const response = await axios.get(url, headers).catch((error)=>console.log(error))
+    const response = await axios.get(url, headers).catch((error)=>{
+        return {'data':error.response.data}
+    })
     return {'data': response.data}
 }
 
