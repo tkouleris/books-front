@@ -22,7 +22,7 @@ function SideNav() {
     return <div>
         <aside className="main-sidebar sidebar-dark-primary elevation-4">
 
-            <a href="index3.html" className="brand-link">
+            <a href="" onClick={goToDashboard} className="brand-link">
                 <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" className="brand-image img-circle elevation-3"
                      style={{'opacity': '.8'}} />
                 <span className="brand-text font-weight-light">Books</span>
@@ -36,7 +36,7 @@ function SideNav() {
                         <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image"/>
                     </div>
                     <div className="info">
-                        <a href="#" onClick={goToProfile} className="d-block">{window.localStorage.username}</a>
+                        <a href="" onClick={goToProfile} className="d-block">{window.localStorage.username}</a>
                     </div>
                 </div>
 
