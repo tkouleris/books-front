@@ -74,8 +74,8 @@ function MyBooks() {
                                             </div>
                                             <div className="card-footer" style={{textAlign: 'right'}}>
                                                 <a className="btn btn-default" onClick={() => goToEditBook(book.id)}
-                                                   style={{marginRight: 5}} href="#"><i className="fas fa-edit"></i></a>
-                                                <a className="btn btn-danger" href="#"
+                                                   style={{marginRight: 5}} ><i className="fas fa-edit"></i></a>
+                                                <a className="btn btn-danger"
                                                    onClick={() => deleteHandler(book.id)}>
                                                     <i className="fa fa-trash" aria-hidden="true"></i></a>
                                             </div>
