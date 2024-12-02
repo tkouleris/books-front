@@ -10,6 +10,7 @@ function MyReadings(){
     const [readings, setReadings] = useState([])
 
     useEffect(() => {
+        document.title = 'My Readings';
         fetchReadings(window.localStorage.token).then(res =>{setReadings(res.data.data)})
     }, []);
 
