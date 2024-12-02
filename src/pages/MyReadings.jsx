@@ -54,13 +54,13 @@ function MyReadings(){
                                     ended = reading.ended
                                 }
                                 return (
-                                    <div className="col-md-3">
+                                    <div key={index} className="col-md-3">
                                         <div className="card card-primary">
                                             <div className="card-header">
                                                 <h3 className="card-title">{reading.book.title}</h3>
                                             </div>
                                             <div className="card-body">
-                                                <img style={{width: '100%', height: 400}} src={reading.book.image}/>
+                                                <img alt={reading.book.title} style={{width: '100%', height: 400}} src={reading.book.image}/>
                                             </div>
                                             <div className="card-footer" style={{textAlign: 'right'}}>
                                                 <div className="row">
