@@ -30,15 +30,13 @@ function ReadingsForm(){
             if( id !== undefined){
                 setReadId(id)
                 fetchReading(window.localStorage.token, id).then(res =>{
-                    if(res.data.success){
-                        setBookId(res.data.data.book.id)
-                        setStarted(res.data.data.started)
-                        if(res.data.data.ended.length > 3)
-                            setEnded(res.data.data.ended)
-
-                    }else{
-                        alert('not found')
+                    if(!res.data.success){
+                        navigate('/404')
                     }
+                    setBookId(res.data.data.book.id)
+                    setStarted(res.data.data.started)
+                    if(res.data.data.ended.length > 3)
+                        setEnded(res.data.data.ended)
                 })
             }
 
