@@ -56,7 +56,7 @@ function ReadingsForm(){
         if(readId !== null){
             data['reading_id'] = readId
         }
-        storeReading(window.localStorage.token, data).then(r =>{
+        storeReading(window.localStorage.token, data).then(() =>{
             navigate('/readings');
         })
     }
@@ -94,7 +94,7 @@ function ReadingsForm(){
                                             >
                                                 {
                                                     books.map((book, index) => {
-                                                        return <option key={book.id} value={book.id}
+                                                        return <option key={index} value={book.id}
                                                                        style={{backgroundImage: book.image}}
                                                         >
                                                             {book.title}
