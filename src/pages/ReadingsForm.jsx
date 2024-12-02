@@ -2,19 +2,20 @@ import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useEffect, useState} from "react";
-import {fetchBooks, storeReading} from "../utils/http.jsx";
+import {fetchBooks, fetchReading, storeReading} from "../utils/http.jsx";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 function ReadingsForm(){
+    let { id } = useParams();
     const navigate = useNavigate();
 
     const [started, setStarted] = useState(null)
     const [ended, setEnded] = useState(null)
     const [bookId, setBookId] = useState()
-    const [readingId, setReadingId] = useState(null)
+    const [readId, setReadId] = useState(null)
     const [books, setBooks] = useState([])
 
     const zeroPad = (num, places) => String(num).padStart(places, '0')
@@ -22,8 +23,25 @@ function ReadingsForm(){
     useEffect(() => {
         document.title = 'My Books';
         fetchBooks(window.localStorage.token).then(res =>{
-            setBooks(res.data.data)
             setBookId(res.data.data[0].id)
+            setBooks(res.data.data)
+
+
+            if( id !== undefined){
+                setReadId(id)
+                fetchReading(window.localStorage.token, id).then(res =>{
+                    if(res.data.success){
+                        setBookId(res.data.data.book.id)
+                        setStarted(res.data.data.started)
+                        if(res.data.data.ended.length > 3)
+                            setEnded(res.data.data.ended)
+
+                    }else{
+                        alert('not found')
+                    }
+                })
+            }
+
         })
     }, []);
 
@@ -36,9 +54,9 @@ function ReadingsForm(){
         if(ended !== null){
             data['ended'] = ended.getFullYear() +"-"+zeroPad((ended.getMonth() + 1),2)+"-"+zeroPad(ended.getDate(),2)
         }
-        data['book_id'] = bookId
-        if(readingId !== null){
-            data['reading_id'] = readingId
+        data['book_id'] = bookId !== undefined ? bookId: null;
+        if(readId !== null){
+            data['reading_id'] = readId
         }
         storeReading(window.localStorage.token, data).then(r =>{
             navigate('/readings');
@@ -73,6 +91,7 @@ function ReadingsForm(){
                                             <label htmlFor="exampleSelectRounded0">Book </label>
                                             <select className="custom-select rounded-0"
                                                     id="slc_book"
+                                                    value={bookId}
                                                     onChange={e => setBookId(e.target.value)}
                                             >
                                                 {

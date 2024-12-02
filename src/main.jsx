@@ -50,6 +50,11 @@ const router = createBrowserRouter([
                 // errorElement: <NotFoundPage />
             },
             {
+                path: '/reading-form/:id',
+                element: <ReadingsForm />,
+                // errorElement: <NotFoundPage />
+            },
+            {
                 path: '/profile',
                 element: <ProfilePage />,
                 // errorElement: <NotFoundPage />

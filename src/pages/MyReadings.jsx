@@ -15,6 +15,9 @@ function MyReadings(){
     }, []);
 
 
+    function goToEditReading(readId) {
+        navigate('/reading-form/' + readId);
+    }
 
     function goToReadingsForm(){
         navigate('/reading-form');
@@ -71,7 +74,7 @@ function MyReadings(){
                                                     </div>
                                                     <div className="col-sm-4">
                                                         <a className="btn btn-default"
-                                                           style={{marginRight: 5}} href="#"><i
+                                                           style={{marginRight: 5}} href=""  onClick={() => goToEditReading(reading.id)}><i
                                                             className="fas fa-edit"></i></a>
                                                         <a className="btn btn-danger" href="#">
                                                             <i className="fa fa-trash" aria-hidden="true"></i></a>
