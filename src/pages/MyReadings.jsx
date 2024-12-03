@@ -3,7 +3,7 @@ import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {fetchReadings} from "../utils/http.jsx";
+import {deleteReading, fetchReadings} from "../utils/http.jsx";
 
 function MyReadings(){
     const navigate = useNavigate();
@@ -14,6 +14,15 @@ function MyReadings(){
         fetchReadings(window.localStorage.token).then(res =>{setReadings(res.data.data)})
     }, []);
 
+    function deleteHandler(id) {
+        if (confirm('Are you sure you want to delete this reading?')) {
+            deleteReading(window.localStorage.token, id).then(res => {
+                if (res.data.success) {
+                    fetchReadings(window.localStorage.token).then(res =>{setReadings(res.data.data)})
+                }
+            })
+        }
+    }
 
     function goToEditReading(readId) {
         navigate('/reading-form/' + readId);
@@ -74,10 +83,14 @@ function MyReadings(){
                                                     </div>
                                                     <div className="col-sm-4">
                                                         <a className="btn btn-default"
-                                                           style={{marginRight: 5}} href=""  onClick={() => goToEditReading(reading.id)}><i
-                                                            className="fas fa-edit"></i></a>
-                                                        <a className="btn btn-danger" href="#">
-                                                            <i className="fa fa-trash" aria-hidden="true"></i></a>
+                                                           style={{marginRight: 5}} href=""
+                                                           onClick={() => goToEditReading(reading.id)}><i
+                                                            className="fas fa-edit"></i>
+                                                        </a>
+                                                        <a className="btn btn-danger" href=""
+                                                           onClick={() => deleteHandler(reading.id)}>
+                                                            <i className="fa fa-trash" aria-hidden="true"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

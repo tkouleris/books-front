@@ -9,7 +9,8 @@ import {
     delete_book,
     store_reading,
     all_readings,
-    get_reading
+    get_reading,
+    delete_reading
 } from '../../config.jsx'
 
 
@@ -142,5 +143,17 @@ export async function fetchReading(token, readId){
     const response = await axios.get(url, headers).catch((error)=>{
         return {'data':error.response.data}
     })
+    return {'data': response.data}
+}
+
+export async function deleteReading(token, readId){
+    let headers = {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    }
+    let url = delete_reading.url
+    url = url.replace(':id', readId)
+    const response = await axios.delete(url, headers).catch((error)=>console.log(error))
     return {'data': response.data}
 }
