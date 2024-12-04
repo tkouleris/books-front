@@ -48,9 +48,9 @@ function ReadingsForm(){
         if(started == null){
             alert("Please enter a valid started")
         }
-        data['started'] = started.getFullYear() +"-"+zeroPad((started.getMonth() + 1),2)+"-"+zeroPad(started.getDate(),2)
+        data['started'] = started
         if(ended !== null){
-            data['ended'] = ended.getFullYear() +"-"+zeroPad((ended.getMonth() + 1),2)+"-"+zeroPad(ended.getDate(),2)
+            data['ended'] = ended
         }
         data['book_id'] = bookId !== undefined ? bookId: null;
         if(readId !== null){
@@ -59,6 +59,14 @@ function ReadingsForm(){
         storeReading(window.localStorage.token, data).then(() =>{
             navigate('/readings');
         })
+    }
+
+    function handleStartedDateChange(date){
+        setStarted(date.getFullYear() +"-"+zeroPad((date.getMonth() + 1),2)+"-"+zeroPad(date.getDate(),2))
+    }
+
+    function handleEndeddDateChange(date){
+        setEnded(date.getFullYear() +"-"+zeroPad((date.getMonth() + 1),2)+"-"+zeroPad(date.getDate(),2))
     }
 
     return <div className="wrapper">
@@ -109,7 +117,7 @@ function ReadingsForm(){
                                             <div>
                                                 <DatePicker
                                                     selected={started}
-                                                    onChange={(date) => setStarted(date)}
+                                                    onChange={handleStartedDateChange}
                                                     dateFormat="dd/MM/yyyy"
                                                 />
                                             </div>
@@ -119,7 +127,7 @@ function ReadingsForm(){
                                             <div>
                                                 <DatePicker
                                                     selected={ended}
-                                                    onChange={(date) => setEnded(date)}
+                                                    onChange={handleEndeddDateChange}
                                                     dateFormat="dd/MM/yyyy"
                                                 />
                                             </div>
