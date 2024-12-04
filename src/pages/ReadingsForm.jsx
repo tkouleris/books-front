@@ -49,9 +49,8 @@ function ReadingsForm(){
             alert("Please enter a valid started")
         }
         data['started'] = started
-        if(ended !== null){
-            data['ended'] = ended
-        }
+
+        data['ended'] = ended
         data['book_id'] = bookId !== undefined ? bookId: null;
         if(readId !== null){
             data['reading_id'] = readId
