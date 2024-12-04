@@ -1,8 +1,13 @@
 import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
+import {useEffect} from "react";
 
 function ProfilePage() {
+    useEffect(() => {
+        document.title = 'My Books - Profile';
+    }, []);
+
     return <div className="wrapper">
         <Header/>
         <div className="content-wrapper">
