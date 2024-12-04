@@ -9,3 +9,4 @@ export const store_reading = {url:'', method: 'post'};
 export const all_readings = {url:'', method: 'get'};
 export const get_reading = {url:'', method: 'get'};
 export const delete_reading = {url:'', method: 'delete'};
+export const get_profile = {url:'', method: 'get'};
