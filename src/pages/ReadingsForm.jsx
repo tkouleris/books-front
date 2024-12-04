@@ -69,6 +69,10 @@ function ReadingsForm(){
         setEnded(date.getFullYear() +"-"+zeroPad((date.getMonth() + 1),2)+"-"+zeroPad(date.getDate(),2))
     }
 
+    function clearEndedDate(){
+        setEnded(null)
+    }
+
     return <div className="wrapper">
         <Header/>
         <div className="content-wrapper">
@@ -130,6 +134,23 @@ function ReadingsForm(){
                                                     onChange={handleEndeddDateChange}
                                                     dateFormat="dd/MM/yyyy"
                                                 />
+                                                <a type="button"
+                                                   className="btn btn-danger"
+                                                   style={
+                                                        {
+                                                            marginLeft: 5,
+                                                            paddingLeft: 4,
+                                                            paddingRight: 4,
+                                                            paddingTop:2,
+                                                            paddingBottom:1,
+                                                            marginTop:0
+                                                        }
+                                                   }
+                                                   onClick={clearEndedDate}
+
+                                                >
+                                                    <i className="far fa-trash-alt"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
