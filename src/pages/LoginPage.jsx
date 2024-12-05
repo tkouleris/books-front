@@ -20,6 +20,7 @@ function LoginPage() {
             if (response.status === 1) {
                 window.localStorage.setItem('username', response.data.data.username);
                 window.localStorage.setItem('token', response.data.data.token);
+                window.localStorage.setItem('avatar', response.data.data.avatar);
                 navigate("/dashboard");
                 return;
             }
