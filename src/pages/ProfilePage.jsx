@@ -1,11 +1,22 @@
 import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {fetchProfile} from "../utils/http.jsx";
 
 function ProfilePage() {
+    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState()
+    const [userId, setUserId] = useState(null)
+
     useEffect(() => {
         document.title = 'My Books - Profile';
+
+        fetchProfile(window.localStorage.token).then(res=>{
+            setEmail(res.data.data.email)
+            setUsername(res.data.data.username)
+            setUserId(res.data.data.id)
+        })
     }, []);
 
     return <div className="wrapper">
@@ -27,7 +38,7 @@ function ProfilePage() {
 
                             <div className="card card-primary">
                                 <div className="card-header">
-                                    <h3 className="card-title">Quick Example</h3>
+                                    <h3 className="card-title">{username}</h3>
                                 </div>
 
                                 <form>
@@ -35,6 +46,7 @@ function ProfilePage() {
                                         <div className="form-group">
                                             <label htmlFor="exampleInputEmail1">Email address</label>
                                             <input type="email" className="form-control" id="exampleInputEmail1"
+                                                   value={email}
                                                    placeholder="Enter email"/>
                                         </div>
                                         <div className="form-group">
