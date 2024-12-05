@@ -68,16 +68,11 @@ function ProfilePage() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="form-check">
-                                            <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                                            <label className="form-check-label" htmlFor="exampleCheck1">Check me
-                                                out</label>
-                                        </div>
                                     </div>
 
 
                                     <div className="card-footer">
-                                        <button type="submit" className="btn btn-primary">Submit</button>
+                                        <button type="submit" className="btn btn-primary">Save</button>
                                     </div>
                                 </form>
                             </div>
