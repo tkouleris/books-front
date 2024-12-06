@@ -7,12 +7,14 @@ import {fetchProfile} from "../utils/http.jsx";
 function ProfilePage() {
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState()
+    const [avatar, setAvatar] = useState(null)
     const [userId, setUserId] = useState(null)
 
     useEffect(() => {
         document.title = 'My Books - Profile';
 
         fetchProfile(window.localStorage.token).then(res=>{
+            console.log(res)
             setEmail(res.data.data.email)
             setUsername(res.data.data.username)
             setUserId(res.data.data.id)
@@ -55,18 +57,11 @@ function ProfilePage() {
                                                    placeholder="Password"/>
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputFile">File input</label>
+                                            <label htmlFor="exampleInputFile">Avatar</label>
                                             <div className="input-group">
-                                                <div className="custom-file">
-                                                    <input type="file" className="custom-file-input"
-                                                           id="exampleInputFile"/>
-                                                    <label className="custom-file-label" htmlFor="exampleInputFile">Choose
-                                                        file</label>
-                                                </div>
-                                                <div className="input-group-append">
-                                                    <span className="input-group-text">Upload</span>
-                                                </div>
+                                                <input id="file" type="file" />
                                             </div>
+                                            {avatar}
                                         </div>
                                     </div>
 
