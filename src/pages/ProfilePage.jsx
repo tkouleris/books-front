@@ -17,9 +17,15 @@ function ProfilePage() {
             console.log(res)
             setEmail(res.data.data.email)
             setUsername(res.data.data.username)
+            setAvatar(res.data.data.avatar)
             setUserId(res.data.data.id)
         })
     }, []);
+
+    let avatar_image = <p>Image Not Found</p>
+    if(avatar !== null) {
+        avatar_image = <img style={{width: 300, height: '100%'}} src={avatar}/>
+    }
 
     return <div className="wrapper">
         <Header/>
@@ -61,7 +67,7 @@ function ProfilePage() {
                                             <div className="input-group">
                                                 <input id="file" type="file" />
                                             </div>
-                                            {avatar}
+                                            {avatar_image}
                                         </div>
                                     </div>
 
