@@ -12,6 +12,7 @@ function ReadingsForm(){
     let { id } = useParams();
     const navigate = useNavigate();
 
+
     const [started, setStarted] = useState(null)
     const [ended, setEnded] = useState(null)
     const [bookId, setBookId] = useState()
@@ -41,13 +42,11 @@ function ReadingsForm(){
             }
 
         })
+        setStarted(transformDate(new Date()))
     }, []);
 
     function handleSubmit(){
         let data = {}
-        if(started == null){
-            alert("Please enter a valid started")
-        }
         data['started'] = started
 
         data['ended'] = ended
@@ -60,6 +59,9 @@ function ReadingsForm(){
         })
     }
 
+    function transformDate(date){
+        return date.getFullYear() +"-"+zeroPad((date.getMonth() + 1),2)+"-"+zeroPad(date.getDate(),2)
+    }
     function handleStartedDateChange(date){
         setStarted(date.getFullYear() +"-"+zeroPad((date.getMonth() + 1),2)+"-"+zeroPad(date.getDate(),2))
     }
