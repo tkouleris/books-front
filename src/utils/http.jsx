@@ -10,7 +10,7 @@ import {
     store_reading,
     all_readings,
     get_reading,
-    delete_reading, get_profile
+    delete_reading, get_profile, store_profile
 } from '../../config.jsx'
 
 
@@ -169,4 +169,20 @@ export async function fetchProfile(token){
         return {'data':error.response.data}
     })
     return {'data': response.data}
+}
+
+export async function storeProfile(token, data){
+    let headers = {
+        headers: {
+            "content-type": "application/json",
+            'Authorization': 'Bearer ' + token
+        }
+    }
+
+    const response = await axios.post(
+        store_profile.url,data, headers
+    ).catch((e) => {
+        return {'data':{ 'message':e.response.data.message, 'status': false}};
+    });
+    return response.data
 }

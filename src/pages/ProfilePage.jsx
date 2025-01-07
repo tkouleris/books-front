@@ -2,11 +2,12 @@ import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useEffect, useState} from "react";
-import {fetchProfile} from "../utils/http.jsx";
+import {fetchProfile, storeProfile} from "../utils/http.jsx";
 
 function ProfilePage() {
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState()
+    const [password, setPassword] = useState(null)
     const [avatar, setAvatar] = useState(null)
     const [userId, setUserId] = useState(null)
 
@@ -14,7 +15,6 @@ function ProfilePage() {
         document.title = 'My Books - Profile';
 
         fetchProfile(window.localStorage.token).then(res=>{
-            console.log(res)
             setEmail(res.data.data.email)
             setUsername(res.data.data.username)
             setAvatar(res.data.data.avatar)
@@ -26,6 +26,21 @@ function ProfilePage() {
     if(avatar !== null) {
         avatar_image = <img style={{width: 300, height: '100%'}} src={avatar}/>
     }
+
+    function handleSubmit(){
+        let data = {
+            email: email,
+            username: username
+        }
+        if(password !== null){
+            data['password'] = password;
+        }
+        storeProfile(window.localStorage.token, data).then(res =>{
+            console.log(res)
+        })
+    }
+
+
 
     return <div className="wrapper">
         <Header/>
@@ -52,20 +67,29 @@ function ProfilePage() {
                                 <form>
                                     <div className="card-body">
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputEmail1">Email address</label>
-                                            <input type="email" className="form-control" id="exampleInputEmail1"
+                                            <label htmlFor="username">Username</label>
+                                            <input type="text" className="form-control" id="username"
+                                                   value={username}
+                                                   onChange={e => setUsername(e.target.value)}
+                                                   placeholder="Enter username"/>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="email">Email address</label>
+                                            <input type="email" className="form-control" id="email"
                                                    value={email}
+                                                   onChange={e => setEmail(e.target.value)}
                                                    placeholder="Enter email"/>
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="exampleInputPassword1">Password</label>
-                                            <input type="password" className="form-control" id="exampleInputPassword1"
+                                            <label htmlFor="password">Password</label>
+                                            <input type="password" className="form-control" id="password"
+                                                   onChange={e => setPassword(e.target.value)}
                                                    placeholder="Password"/>
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="exampleInputFile">Avatar</label>
                                             <div className="input-group">
-                                                <input id="file" type="file" />
+                                                <input id="file" type="file"/>
                                             </div>
                                             {avatar_image}
                                         </div>
@@ -73,7 +97,8 @@ function ProfilePage() {
 
 
                                     <div className="card-footer">
-                                        <button type="submit" className="btn btn-primary">Save</button>
+                                        <button type="submit" onClick={handleSubmit} className="btn btn-primary">Save
+                                        </button>
                                     </div>
                                 </form>
                             </div>
