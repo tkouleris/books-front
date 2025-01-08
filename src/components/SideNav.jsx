@@ -33,7 +33,7 @@ function SideNav() {
 
                 <div className="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div className="image">
-                        <img src={window.localStorage.avatar} className="img-circle elevation-2" alt="User Image"/>
+                        <img src={window.localStorage.avatar} className="img-circle elevation-2" alt="User Image" style={{width:30, height:30}}/>
                     </div>
                     <div className="info">
                         <a href="" onClick={goToProfile} className="d-block">{window.localStorage.username}</a>

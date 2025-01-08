@@ -33,7 +33,9 @@ function ProfilePage() {
         }
     };
 
-    function handleSubmit(){
+    function handleSubmit(event){
+        event.preventDefault();
+
         let formdata = new FormData();
         formdata.append("email", email)
         formdata.append("username", username)
@@ -45,9 +47,10 @@ function ProfilePage() {
         if(avatar !== null){
             formdata.append("file", avatar);
         }
-        console.log(formdata);
+
         storeProfile(window.localStorage.token, formdata).then(res =>{
-            console.log(res)
+            window.localStorage.avatar = res.data.avatar;
+            window.location.reload();
         })
     }
 
