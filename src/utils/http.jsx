@@ -174,7 +174,7 @@ export async function fetchProfile(token){
 export async function storeProfile(token, data){
     let headers = {
         headers: {
-            "content-type": "application/json",
+            "content-type": "multipart/form-data",
             'Authorization': 'Bearer ' + token
         }
     }

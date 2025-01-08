@@ -27,15 +27,26 @@ function ProfilePage() {
         avatar_image = <img style={{width: 300, height: '100%'}} src={avatar}/>
     }
 
+    const handleAvatarChange = (e) => {
+        if (e.target.files) {
+            setAvatar(e.target.files[0]);
+        }
+    };
+
     function handleSubmit(){
-        let data = {
-            email: email,
-            username: username
-        }
+        let formdata = new FormData();
+        formdata.append("email", email)
+        formdata.append("username", username)
+
         if(password !== null){
-            data['password'] = password;
+            formdata.append("password", password)
         }
-        storeProfile(window.localStorage.token, data).then(res =>{
+
+        if(avatar !== null){
+            formdata.append("file", avatar);
+        }
+        console.log(formdata);
+        storeProfile(window.localStorage.token, formdata).then(res =>{
             console.log(res)
         })
     }
@@ -89,7 +100,7 @@ function ProfilePage() {
                                         <div className="form-group">
                                             <label htmlFor="exampleInputFile">Avatar</label>
                                             <div className="input-group">
-                                                <input id="file" type="file"/>
+                                                <input id="file" type="file" onChange={handleAvatarChange} />
                                             </div>
                                             {avatar_image}
                                         </div>
