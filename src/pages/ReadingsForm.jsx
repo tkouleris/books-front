@@ -19,7 +19,7 @@ function ReadingsForm(){
     const [bookId, setBookId] = useState()
     const [readId, setReadId] = useState(null)
     const [books, setBooks] = useState([])
-    const [book, setBook] = useState('Select book...')
+    const [bookTitle, setBookTitle] = useState('Select book...')
 
     const zeroPad = (num, places) => String(num).padStart(places, '0')
 
@@ -39,7 +39,7 @@ function ReadingsForm(){
                     }
                     console.log(res.data.data.book);
                     setBookId(res.data.data.book.id)
-                    setBook(res.data.data.book.title)
+                    setBookTitle(res.data.data.book.title)
                     setStarted(res.data.data.started)
                     if(res.data.data.ended.length > 3)
                         setEnded(res.data.data.ended)
@@ -80,7 +80,7 @@ function ReadingsForm(){
     }
 
     function handleBookSelectionChange(val){
-        setBook(val.title)
+        setBookTitle(val.title)
         setBookId(val.id)
     }
 
@@ -109,31 +109,14 @@ function ReadingsForm(){
                                 <form>
                                     <div className="card-body">
                                         <div className="form-group">
+                                            <label htmlFor="book">Book </label>
                                             <SearchableDropdown
                                                 options={books}
                                                 label="title"
                                                 id="id"
-                                                selectedVal={book}
+                                                selectedVal={bookTitle}
                                                 handleChange={handleBookSelectionChange}
-                                                // handleChange={(val) => setBook(val)}
                                             />
-                                            {/*<label htmlFor="exampleSelectRounded0">Book </label>*/}
-                                            {/*<select className="custom-select rounded-0"*/}
-                                            {/*        id="slc_book"*/}
-                                            {/*        value={bookId}*/}
-                                            {/*        onChange={e => setBookId(e.target.value)}*/}
-                                            {/*>*/}
-                                            {/*    {*/}
-                                            {/*        books.map((book, index) => {*/}
-                                            {/*            return <option key={index} value={book.id}*/}
-                                            {/*                           style={{backgroundImage: book.image}}*/}
-                                            {/*            >*/}
-                                            {/*                {book.title}*/}
-
-                                            {/*            </option>*/}
-                                            {/*        })*/}
-                                            {/*    }*/}
-                                            {/*</select>*/}
                                         </div>
                                         <div className="form-group">
                                             <label>Started:</label>
