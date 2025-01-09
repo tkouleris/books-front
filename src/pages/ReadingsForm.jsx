@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import {useNavigate, useParams} from "react-router-dom";
+import SearchableDropdown from "../components/SearchableDropdown.jsx";
 
 function ReadingsForm(){
     let { id } = useParams();
@@ -99,23 +100,30 @@ function ReadingsForm(){
                                 <form>
                                     <div className="card-body">
                                         <div className="form-group">
-                                            <label htmlFor="exampleSelectRounded0">Book </label>
-                                            <select className="custom-select rounded-0"
-                                                    id="slc_book"
-                                                    value={bookId}
-                                                    onChange={e => setBookId(e.target.value)}
-                                            >
-                                                {
-                                                    books.map((book, index) => {
-                                                        return <option key={index} value={book.id}
-                                                                       style={{backgroundImage: book.image}}
-                                                        >
-                                                            {book.title}
+                                            <SearchableDropdown
+                                                options={books}
+                                                label="title"
+                                                id="id"
+                                                // selectedVal={bookId}
+                                                handleChange={(val) => setBookId(val)}
+                                            />
+                                            {/*<label htmlFor="exampleSelectRounded0">Book </label>*/}
+                                            {/*<select className="custom-select rounded-0"*/}
+                                            {/*        id="slc_book"*/}
+                                            {/*        value={bookId}*/}
+                                            {/*        onChange={e => setBookId(e.target.value)}*/}
+                                            {/*>*/}
+                                            {/*    {*/}
+                                            {/*        books.map((book, index) => {*/}
+                                            {/*            return <option key={index} value={book.id}*/}
+                                            {/*                           style={{backgroundImage: book.image}}*/}
+                                            {/*            >*/}
+                                            {/*                {book.title}*/}
 
-                                                        </option>
-                                                    })
-                                                }
-                                            </select>
+                                            {/*            </option>*/}
+                                            {/*        })*/}
+                                            {/*    }*/}
+                                            {/*</select>*/}
                                         </div>
                                         <div className="form-group">
                                             <label>Started:</label>
