@@ -19,7 +19,8 @@ const SearchableDropdown = ({
 
     const selectOption = (option) => {
         setQuery(() => "");
-        handleChange(option[label]);
+        // handleChange(option[label]);
+        handleChange(option);
         setIsOpen((isOpen) => !isOpen);
     };
 
@@ -35,7 +36,6 @@ const SearchableDropdown = ({
     };
 
     const filter = (options) => {
-        // return options;
         return options.filter(
             (option) => option[label].toLowerCase().indexOf(query.toLowerCase()) > -1
         );

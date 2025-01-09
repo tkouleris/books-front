@@ -19,6 +19,7 @@ function ReadingsForm(){
     const [bookId, setBookId] = useState()
     const [readId, setReadId] = useState(null)
     const [books, setBooks] = useState([])
+    const [book, setBook] = useState('Select book...')
 
     const zeroPad = (num, places) => String(num).padStart(places, '0')
 
@@ -27,6 +28,7 @@ function ReadingsForm(){
         fetchBooks(window.localStorage.token).then(res =>{
             setBookId(res.data.data[0].id)
             setBooks(res.data.data)
+            // setBook(res.data.data[0]);
 
 
             if( id !== undefined){
@@ -35,7 +37,9 @@ function ReadingsForm(){
                     if(!res.data.success){
                         navigate('/404')
                     }
+                    console.log(res.data.data.book);
                     setBookId(res.data.data.book.id)
+                    setBook(res.data.data.book.title)
                     setStarted(res.data.data.started)
                     if(res.data.data.ended.length > 3)
                         setEnded(res.data.data.ended)
@@ -75,6 +79,11 @@ function ReadingsForm(){
         setEnded(null)
     }
 
+    function handleBookSelectionChange(val){
+        setBook(val.title)
+        setBookId(val.id)
+    }
+
     return <div className="wrapper">
         <Header/>
         <div className="content-wrapper">
@@ -104,8 +113,9 @@ function ReadingsForm(){
                                                 options={books}
                                                 label="title"
                                                 id="id"
-                                                // selectedVal={bookId}
-                                                handleChange={(val) => setBookId(val)}
+                                                selectedVal={book}
+                                                handleChange={handleBookSelectionChange}
+                                                // handleChange={(val) => setBook(val)}
                                             />
                                             {/*<label htmlFor="exampleSelectRounded0">Book </label>*/}
                                             {/*<select className="custom-select rounded-0"*/}
