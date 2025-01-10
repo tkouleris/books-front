@@ -84,6 +84,10 @@ function ReadingsForm(){
         setBookId(val.id)
     }
 
+    function handleBack(){
+        navigate('/readings');
+    }
+
     return <div className="wrapper">
         <Header/>
         <div className="content-wrapper">
@@ -157,6 +161,12 @@ function ReadingsForm(){
                                         </div>
                                     </div>
                                     <div className="card-footer">
+                                        <button type="button" className="btn btn-light"
+                                                onClick={handleBack}
+                                                style={{marginRight: 4, border: '1px solid black' }}
+                                        >
+                                            Back
+                                        </button>
                                         <button type="button" onClick={handleSubmit} className="btn btn-primary">Save</button>
                                     </div>
                                 </form>
