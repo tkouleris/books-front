@@ -186,3 +186,14 @@ export async function storeProfile(token, data){
     });
     return response.data
 }
+
+// export async function display(username){
+//     let headers = {
+//         headers: {
+//         }
+//     }
+//     let url = display.url
+//     url = url.replace(':id', readId)
+//     const response = await axios.delete(url, headers).catch((error)=>console.log(error))
+//     return {'data': response.data}
+// }
