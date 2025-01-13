@@ -12,6 +12,7 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import BookForm from "./pages/BookForm.jsx";
 import ReadingsForm from "./pages/ReadingsForm.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import DisplayPage from "./pages/DisplayPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
     {
         path: '/register',
         element: <RegistrationPage />,
+    },
+    {
+        path: '/display/:username',
+        element: <DisplayPage />,
     },
     {
         path: '/404',
