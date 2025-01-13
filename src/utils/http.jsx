@@ -10,7 +10,7 @@ import {
     store_reading,
     all_readings,
     get_reading,
-    delete_reading, get_profile, store_profile
+    delete_reading, get_profile, store_profile, display_data
 } from '../../config.jsx'
 
 
@@ -187,13 +187,13 @@ export async function storeProfile(token, data){
     return response.data
 }
 
-// export async function display(username){
-//     let headers = {
-//         headers: {
-//         }
-//     }
-//     let url = display.url
-//     url = url.replace(':id', readId)
-//     const response = await axios.delete(url, headers).catch((error)=>console.log(error))
-//     return {'data': response.data}
-// }
+export async function display_page(username){
+    let headers = {
+        headers: {
+        }
+    }
+    let url = display_data.url
+    url = url.replace(':username', username)
+    const response = await axios.get(url, headers).catch((error)=>console.log(error))
+    return {'data': response.data}
+}
