@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {display_page} from "../utils/http.jsx";
+import Display from "../components/Display.jsx";
 
 function DisplayPage() {
     let { username } = useParams();
@@ -35,33 +36,34 @@ function DisplayPage() {
                             <h3>Currently Reading</h3>
                         </div>
                         {
-                            current_readings.map((reading) => {
+                            current_readings.map((reading, index) => {
                                 return (
-                                    <div key={reading.id} className="col-md-2" style={{margin: "5px 5px", border: '1px solid black'}}>
-                                        <div className="row">
-                                            <div className="col-12" style={{
-                                                textAlign: "center",
-                                                backgroundColor: "#0096FF",
-                                                paddingTop: 0,
-                                                paddingBottom: 0
-                                            }}>
-                                                <b>{reading.book.title}</b>
-                                            </div>
-                                            <div className="col-6" style={{paddingLeft: 0}}>
-                                                <img alt={reading.book.title} style={{width: '100%', height: 200}}
-                                                     src={reading.book.image}/>
-                                            </div>
-                                            <div className="col-6">
-                                                {reading.book.description}
-                                            </div>
-                                            <div className="col-12" style={{textAlign: "center"}}>
-                                                <b>Started:</b> <span>{reading.started}</span>
-                                            </div>
-                                            <div className="col-12" style={{textAlign: "center"}}>
-                                                <b>Ended:</b> <span>{reading.ended}</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <Display key={index} reading={reading}/>
+                                    // <div key={reading.id} className="col-md-2" style={{margin: "5px 5px", border: '1px solid black'}}>
+                                    //     <div className="row">
+                                    //         <div className="col-12" style={{
+                                    //             textAlign: "center",
+                                    //             backgroundColor: "#0096FF",
+                                    //             paddingTop: 0,
+                                    //             paddingBottom: 0
+                                    //         }}>
+                                    //             <b>{reading.book.title}</b>
+                                    //         </div>
+                                    //         <div className="col-6" style={{paddingLeft: 0}}>
+                                    //             <img alt={reading.book.title} style={{width: '100%', height: 200}}
+                                    //                  src={reading.book.image}/>
+                                    //         </div>
+                                    //         <div className="col-6">
+                                    //             {reading.book.description}
+                                    //         </div>
+                                    //         <div className="col-12" style={{textAlign: "center"}}>
+                                    //             <b>Started:</b> <span>{reading.started}</span>
+                                    //         </div>
+                                    //         <div className="col-12" style={{textAlign: "center"}}>
+                                    //             <b>Ended:</b> <span>{reading.ended}</span>
+                                    //         </div>
+                                    //     </div>
+                                    // </div>
                                     // <div key={index} className="col-md-2">
                                     //     <div className="card card-primary">
                                     //         <div className="card-header">
@@ -94,32 +96,33 @@ function DisplayPage() {
                         {
                             latest_readings.map((reading, index) => {
                                 return (
-                                    <div key={reading.id} className="col-md-2"
-                                         style={{margin: "5px 5px", border: '1px solid black'}}>
-                                        <div className="row">
-                                            <div className="col-12" style={{
-                                                textAlign: "center",
-                                                backgroundColor: "#0096FF",
-                                                paddingTop: 0,
-                                                paddingBottom: 0
-                                            }}>
-                                                <b>{reading.book.title}</b>
-                                            </div>
-                                            <div className="col-6" style={{paddingLeft: 0}}>
-                                                <img alt={reading.book.title} style={{width: '100%', height: 200}}
-                                                     src={reading.book.image}/>
-                                            </div>
-                                            <div className="col-6">
-                                                {reading.book.description}
-                                            </div>
-                                            <div className="col-12" style={{textAlign: "center"}}>
-                                                <b>Started:</b> <span>{reading.started}</span>
-                                            </div>
-                                            <div className="col-12" style={{textAlign: "center"}}>
-                                                <b>Ended:</b> <span>{reading.ended}</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <Display key={index} reading={reading}/>
+                                    // <div key={reading.id} className="col-md-2"
+                                    //      style={{margin: "5px 5px", border: '1px solid black'}}>
+                                    //     <div className="row">
+                                    //         <div className="col-12" style={{
+                                    //             textAlign: "center",
+                                    //             backgroundColor: "#0096FF",
+                                    //             paddingTop: 0,
+                                    //             paddingBottom: 0
+                                    //         }}>
+                                    //             <b>{reading.book.title}</b>
+                                    //         </div>
+                                    //         <div className="col-6" style={{paddingLeft: 0}}>
+                                    //             <img alt={reading.book.title} style={{width: '100%', height: 200}}
+                                    //                  src={reading.book.image}/>
+                                    //         </div>
+                                    //         <div className="col-6">
+                                    //             {reading.book.description}
+                                    //         </div>
+                                    //         <div className="col-12" style={{textAlign: "center"}}>
+                                    //             <b>Started:</b> <span>{reading.started}</span>
+                                    //         </div>
+                                    //         <div className="col-12" style={{textAlign: "center"}}>
+                                    //             <b>Ended:</b> <span>{reading.ended}</span>
+                                    //         </div>
+                                    //     </div>
+                                    // </div>
                                     // <div key={index} className="col-md-3">
                                     //     <div className="card card-primary">
                                     //         <div className="card-header">
