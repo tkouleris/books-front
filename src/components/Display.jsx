@@ -17,10 +17,17 @@ function Display({reading}) {
                 {reading.book.description}
             </div>
             <div className="col-12" style={{textAlign: "center"}}>
-                <b>Started:</b> <span>{reading.started}</span>
+                <div className="row">
+                    <div className="col-6" style={{textAlign: "right"}}><b>Started:</b></div>
+                    <div className="col-6" style={{textAlign: "left"}}><span>{reading.started}</span></div>
+                </div>
             </div>
             <div className="col-12" style={{textAlign: "center"}}>
-                <b>Ended:</b> <span>{reading.ended}</span>
+                <div className="row">
+                    <div className="col-6" style={{textAlign: "right"}}><b>Ended:</b></div>
+                    <div className="col-6" style={{textAlign: "left"}}><span>{reading.ended}</span></div>
+                </div>
+
             </div>
         </div>
     </div>
