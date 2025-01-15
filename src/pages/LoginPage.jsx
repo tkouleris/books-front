@@ -33,7 +33,7 @@ function LoginPage() {
         navigate("/register");
     }
 
-    return <div className="ogin-box">
+    return <div className="login-box">
 
         <div className="login-box">
             <div className="login-logo">

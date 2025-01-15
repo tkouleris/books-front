@@ -1,5 +1,5 @@
 function Display({reading}) {
-    return <div key={reading.id} className="col-md-2" style={{margin: "5px 5px", border: '1px solid black'}}>
+    return <div key={reading.id} className="col-md-12" style={{margin: "5px 5px", border: '1px solid black'}}>
         <div className="row">
             <div className="col-12" style={{
                 textAlign: "center",
@@ -10,7 +10,7 @@ function Display({reading}) {
                 <b>{reading.book.title}</b>
             </div>
             <div className="col-6" style={{paddingLeft: 0}}>
-                <img alt={reading.book.title} style={{width: '100%', height: 200}}
+                <img alt={reading.book.title} style={{width: '100%', height: 250}}
                      src={reading.book.image}/>
             </div>
             <div className="col-6">
