@@ -20,7 +20,7 @@ function DisplayPage() {
     }, []);
 
     return <div className="wrapper">
-        <div className="content-wrapper" style={{marginLeft: 40}}>
+        <div className="content-wrapper" style={{marginLeft: 50}}>
             <div className="content-header">
                 <div className="container-fluid">
                     <div className="row mb-1">
@@ -40,13 +40,10 @@ function DisplayPage() {
             </div>
             <section className="content">
                 <div className="container-fluid">
-                    <div className="row" style={{borderBottom: "1px solid black", padding: "10px"}}>
-
+                    <div className="row">
+                        <div className="col-sm-12"><h3>Currently Reading</h3></div>
                     </div>
                     <div className="row">
-                        <div className="col-sm-12">
-                            <h3>Currently Reading</h3>
-                        </div>
 
                         {
                             current_readings.map((reading, index) => {
