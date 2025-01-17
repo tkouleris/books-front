@@ -16,11 +16,13 @@ function BookForm() {
                 if(!res.data.success){
                     navigate('/404')
                 }
-                setDescription(res.data.data.description)
-                setTitle(res.data.data.title)
-                setBookId(res.data.data.id)
-                setImageUrl(res.data.data.image)
-                document.title = 'My Books - ' + res.data.data.title;
+                console.log(res.data);
+                setDescription(res.data.data.book.description)
+                setTitle(res.data.data.book.title)
+                setBookId(res.data.data.book.id)
+                setImageUrl(res.data.data.book.image)
+                setBookReadings(res.data.data.readings)
+                document.title = 'My Books - ' + res.data.data.book.title;
             })
         }
     }, []);
@@ -30,6 +32,7 @@ function BookForm() {
     const [bookId, setBookId] = useState(null)
     const [file, setFile] = useState(null);
     const [imageUrl, setImageUrl] = useState(null)
+    const [book_readings, setBookReadings] = useState([])
 
     const handleFileChange = (e) => {
         if (e.target.files) {
@@ -106,15 +109,39 @@ function BookForm() {
 
 
                                     <div className="card-footer">
-                                    <button type="button" className="btn btn-primary" onClick={handleStoreBook}>Save</button>
+                                        <button type="button" className="btn btn-primary"
+                                                onClick={handleStoreBook}>Save
+                                        </button>
                                     </div>
                                 </form>
                             </div>
-
-
                         </div>
+                    </div>
+                    <div className="row" style={{paddingBottom: 40}}>
+                        <div className="col-md-12" style={{backgroundColor: "white", paddingLeft: 20}}>
+                            <h3>Reading Sessions</h3>
+                            <table style={{width: "30%"}}>
+                                <tr>
+                                    <th>AA</th>
+                                    <th>Started</th>
+                                    <th>Ended</th>
+                                    <th>Action</th>
+                                </tr>
+                                {
+                                    book_readings.map((read, index) => {
+                                        return (
+                                            <tr key={index}>
+                                                <td>{index + 1}</td>
+                                                <td> {read.started}</td>
+                                                <td> {read.ended}</td>
+                                                <td> <button>delete</button></td>
+                                            </tr>
+                                        )
+                                    })
+                                }
 
-
+                            </table>
+                        </div>
                     </div>
 
                 </div>
