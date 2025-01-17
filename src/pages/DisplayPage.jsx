@@ -7,7 +7,7 @@ function DisplayPage() {
     let {username} = useParams();
     const [current_readings, setCurrentReadings] = useState([])
     const [latest_readings, setLatestReadings] = useState([])
-    const [user, setUser] = useState()
+    const [user, setUser] = useState([])
 
     useEffect(() => {
         document.title = 'Display - ' + username;
