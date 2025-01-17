@@ -69,20 +69,20 @@ function BookForm() {
                     <h3>Reading Sessions</h3>
                     <table style={{width: "30%"}}>
                         <tr>
-                            <th>AA</th>
-                            <th>Started</th>
-                            <th>Ended</th>
-                            <th>Action</th>
+                            <th style={{textAlign: "center"}}>AA</th>
+                            <th style={{textAlign: "center"}}>Started</th>
+                            <th style={{textAlign: "center"}}>Ended</th>
+                            <th style={{textAlign: "center"}}>Action</th>
                         </tr>
                         {
                             book_readings.map((read, index) => {
                                 return (
-                                    <tr key={index}>
-                                        <td>{index + 1}</td>
-                                        <td> {read.started}</td>
-                                        <td> {read.ended}</td>
-                                        <td>
-                                            <button>delete</button>
+                                    <tr key={index} >
+                                        <td style={{paddingTop: 20, paddingBottom: 20,textAlign: "center"}}>{index + 1}</td>
+                                        <td style={{textAlign: "center"}}> {read.started}</td>
+                                        <td style={{textAlign: "center"}}> {read.ended}</td>
+                                        <td style={{textAlign: "center"}}>
+                                            <button type="button" className="btn btn-danger">Delete</button>
                                         </td>
                                     </tr>
                                 )
