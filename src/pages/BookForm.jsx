@@ -61,6 +61,41 @@ function BookForm() {
         book_image = <img style={{width: 300, height: '100%'}} src={imageUrl}/>
     }
 
+    function reading_sessions(){
+        let html = ""
+        if(book_readings.length > 0) {
+            html = <div className="row" style={{paddingBottom: 40}}>
+                <div className="col-md-12" style={{backgroundColor: "white", paddingLeft: 20}}>
+                    <h3>Reading Sessions</h3>
+                    <table style={{width: "30%"}}>
+                        <tr>
+                            <th>AA</th>
+                            <th>Started</th>
+                            <th>Ended</th>
+                            <th>Action</th>
+                        </tr>
+                        {
+                            book_readings.map((read, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
+                                        <td> {read.started}</td>
+                                        <td> {read.ended}</td>
+                                        <td>
+                                            <button>delete</button>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
+
+                    </table>
+                </div>
+            </div>
+        }
+        return html;
+    }
+
     return <div className="wrapper">
         <Header/>
         <div className="content-wrapper">
@@ -117,32 +152,7 @@ function BookForm() {
                             </div>
                         </div>
                     </div>
-                    <div className="row" style={{paddingBottom: 40}}>
-                        <div className="col-md-12" style={{backgroundColor: "white", paddingLeft: 20}}>
-                            <h3>Reading Sessions</h3>
-                            <table style={{width: "30%"}}>
-                                <tr>
-                                    <th>AA</th>
-                                    <th>Started</th>
-                                    <th>Ended</th>
-                                    <th>Action</th>
-                                </tr>
-                                {
-                                    book_readings.map((read, index) => {
-                                        return (
-                                            <tr key={index}>
-                                                <td>{index + 1}</td>
-                                                <td> {read.started}</td>
-                                                <td> {read.ended}</td>
-                                                <td> <button>delete</button></td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-
-                            </table>
-                        </div>
-                    </div>
+                    { reading_sessions() }
 
                 </div>
 
