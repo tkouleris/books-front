@@ -1,4 +1,14 @@
 function Display({reading}) {
+
+    function descriptionReducer(description)                {
+        if(description.length > 250){
+            return reading.book.description.substring(0,250) + '...'
+        }else{
+            return description
+        }
+
+    }
+
     return <div key={reading.id} className="col-md-12" style={{margin: "5px 5px", border: '1px solid black'}}>
         <div className="row">
             <div className="col-12" style={{
@@ -14,7 +24,7 @@ function Display({reading}) {
                      src={reading.book.image}/>
             </div>
             <div className="col-6">
-                {reading.book.description}
+                {descriptionReducer(reading.book.description)}
             </div>
             <div className="col-12" style={{textAlign: "center"}}>
                 <div className="row">
