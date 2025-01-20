@@ -2,7 +2,7 @@ import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useEffect, useState} from "react";
-import {fetchBook, storeBook} from "../utils/http.jsx";
+import {deleteReading, fetchBook, fetchReadings, storeBook} from "../utils/http.jsx";
 import {useNavigate, useParams} from "react-router-dom";
 
 function BookForm() {
@@ -56,6 +56,23 @@ function BookForm() {
         });
     }
 
+    function deleteHandler(id) {
+        if (confirm('Are you sure you want to delete this reading?')) {
+            deleteReading(window.localStorage.token, id).then(res => {
+                if (res.data.success) {
+                    fetchBook(window.localStorage.token, bookId).then(res=>{
+                        setDescription(res.data.data.book.description)
+                        setTitle(res.data.data.book.title)
+                        setBookId(res.data.data.book.id)
+                        setImageUrl(res.data.data.book.image)
+                        setBookReadings(res.data.data.readings)
+                        document.title = 'My Books - ' + res.data.data.book.title;
+                    })
+                }
+            })
+        }
+    }
+
     let book_image = <p>Image Not Found</p>
     if(imageUrl !== null) {
         book_image = <img style={{width: 300, height: '100%'}} src={imageUrl}/>
@@ -82,7 +99,10 @@ function BookForm() {
                                         <td style={{textAlign: "center"}}> {read.started}</td>
                                         <td style={{textAlign: "center"}}> {read.ended}</td>
                                         <td style={{textAlign: "center"}}>
-                                            <button type="button" className="btn btn-danger">Delete</button>
+                                            <button type="button"
+                                                    className="btn btn-danger"
+                                                    onClick={() => deleteHandler(read.id)}
+                                            >Delete</button>
                                         </td>
                                     </tr>
                                 )
