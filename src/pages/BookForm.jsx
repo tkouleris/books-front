@@ -33,10 +33,12 @@ function BookForm() {
     const [file, setFile] = useState(null);
     const [imageUrl, setImageUrl] = useState(null)
     const [book_readings, setBookReadings] = useState([])
+    const [coverChanged, setCoverChanged] = useState(false)
 
     const handleFileChange = (e) => {
         if (e.target.files) {
             setFile(e.target.files[0]);
+            setCoverChanged(true)
         }
     };
 
@@ -44,6 +46,7 @@ function BookForm() {
         let formdata = new FormData();
         formdata.append("title", title);
         formdata.append("description", description);
+        console.log(file)
         if(file !== null){
             formdata.append("file", file);
         }

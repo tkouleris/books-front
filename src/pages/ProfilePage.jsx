@@ -10,7 +10,7 @@ function ProfilePage() {
     const [password, setPassword] = useState(null)
     const [avatar, setAvatar] = useState(null)
     const [userId, setUserId] = useState(null)
-    const [avatarChaned, setAvatarChaned] = useState(false)
+    const [avatarChanged, setAvatarChanged] = useState(false)
 
     useEffect(() => {
         document.title = 'My Books - Profile';
@@ -31,7 +31,7 @@ function ProfilePage() {
     const handleAvatarChange = (e) => {
         if (e.target.files) {
             setAvatar(e.target.files[0]);
-            setAvatarChaned(true)
+            setAvatarChanged(true)
         }
     };
 
@@ -107,12 +107,12 @@ function ProfilePage() {
                                             <div className="input-group">
                                                 <input id="file" type="file" onChange={handleAvatarChange} />
                                             </div>
-                                            {avatarChaned &&
+                                            {avatarChanged &&
                                                 <p><strong>
                                                     Save to upload the image
                                                 </strong></p>
                                             }
-                                            {!avatarChaned &&
+                                            {!avatarChanged &&
                                                 avatar_image
                                             }
                                         </div>
