@@ -161,7 +161,15 @@ function BookForm() {
                                             <div className="input-group">
                                                 <input id="file" type="file" onChange={handleFileChange}/>
                                             </div>
-                                            {book_image}
+                                            {/*{book_image}*/}
+                                            {coverChanged &&
+                                                <p><strong>
+                                                    Save to upload the cover
+                                                </strong></p>
+                                            }
+                                            {!coverChanged &&
+                                                book_image
+                                            }
                                         </div>
                                     </div>
 
