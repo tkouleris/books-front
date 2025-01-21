@@ -2,7 +2,7 @@ import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useEffect, useState} from "react";
-import {deleteReading, fetchBook, fetchReadings, storeBook} from "../utils/http.jsx";
+import {deleteReading, fetchBook, storeBook} from "../utils/http.jsx";
 import {useNavigate, useParams} from "react-router-dom";
 
 function BookForm() {
