@@ -9,11 +9,15 @@ function MyBooks() {
     const navigate = useNavigate();
 
     const [books, setBooks] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(1)
 
     useEffect(() => {
         document.title = 'My Books';
         fetchBooks(window.localStorage.token).then(res => {
-            setBooks(res.data.data)
+            setBooks(res.data.data.books)
+            setCurrentPage(res.data.data.current_page)
+            setTotalPages(res.data.data.total_pages)
         })
     }, []);
 
@@ -36,6 +40,15 @@ function MyBooks() {
 
     function goToEditBook(bookId) {
         navigate('/book/' + bookId);
+    }
+
+    function paginationHtml(){
+        let html = []
+        for(let page=1; page <= totalPages; page++){
+            console.log(page)
+            html.push("<b>" + page + "</b>");
+        }
+        return html
     }
 
     return <div className="wrapper">
@@ -70,11 +83,12 @@ function MyBooks() {
                                                 <h3 className="card-title">{book.title}</h3>
                                             </div>
                                             <div className="card-body">
-                                                <img alt={book.title} style={{width: '100%', height: 400}} src={book.image}/>
+                                                <img alt={book.title} style={{width: '100%', height: 400}}
+                                                     src={book.image}/>
                                             </div>
                                             <div className="card-footer" style={{textAlign: 'right'}}>
                                                 <a className="btn btn-default" onClick={() => goToEditBook(book.id)}
-                                                   style={{marginRight: 5}} ><i className="fas fa-edit"></i></a>
+                                                   style={{marginRight: 5}}><i className="fas fa-edit"></i></a>
                                                 <a className="btn btn-danger"
                                                    onClick={() => deleteHandler(book.id)}>
                                                     <i className="fa fa-trash" aria-hidden="true"></i></a>
@@ -85,8 +99,11 @@ function MyBooks() {
                             })
 
                         }
-                    </div>
 
+                    </div>
+                    <div className="row">
+                        {paginationHtml()}
+                    </div>
                 </div>
 
             </section>
