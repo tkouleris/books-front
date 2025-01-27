@@ -14,7 +14,7 @@ function MyBooks() {
 
     useEffect(() => {
         document.title = 'My Books';
-        fetchBooks(window.localStorage.token).then(res => {
+        fetchBooks(window.localStorage.token, 1).then(res => {
             setBooks(res.data.data.books)
             setCurrentPage(res.data.data.current_page)
             setTotalPages(res.data.data.total_pages)

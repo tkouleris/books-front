@@ -82,14 +82,19 @@ export async function fetchBook(token, bookId){
     return {'data': response.data}
 }
 
-export async function fetchBooks(token){
+export async function fetchBooks(token, page=null){
     let headers = {
         headers: {
             'Authorization': 'Bearer ' + token
         }
     }
 
-    const response = await axios.get(get_books.url, headers).catch((error)=>console.log(error))
+    let url = get_books.url
+    if(page !== null){
+        url = url + "?page=" + page
+    }
+
+    const response = await axios.get(url, headers).catch((error)=>console.log(error))
     return {'data': response.data}
 }
 
