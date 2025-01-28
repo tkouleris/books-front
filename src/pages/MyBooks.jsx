@@ -42,13 +42,26 @@ function MyBooks() {
         navigate('/book/' + bookId);
     }
 
-    function paginationHtml(){
-        let html = []
-        for(let page=1; page <= totalPages; page++){
-            console.log(page)
-            html.push("<b>" + page + "</b>");
+    function pageHandler(event, page) {
+        event.preventDefault()
+        setCurrentPage(page)
+        fetchBooks(window.localStorage.token, page).then(res => {
+            setBooks(res.data.data.books)
+            setCurrentPage(res.data.data.current_page)
+            setTotalPages(res.data.data.total_pages)
+        })
+    }
+
+    const listItems = [];
+
+    for (let page = 1; page <= totalPages; page++) {
+        if (page === currentPage) {
+            listItems.push(<div onClick={(e) => pageHandler(e, page)} style={{paddingLeft: 5, paddingRight: 5}}><u><b><a
+                href="" key={page}>{page}</a></b></u></div>);
+        } else {
+            listItems.push(<div onClick={(e) => pageHandler(e, page)} style={{paddingLeft: 5, paddingRight: 5}}><a
+                href="" key={page}>{page}</a></div>);
         }
-        return html
     }
 
     return <div className="wrapper">
@@ -102,7 +115,11 @@ function MyBooks() {
 
                     </div>
                     <div className="row">
-                        {paginationHtml()}
+                        <div onClick={(e) => pageHandler(e, 1)} style={{paddingLeft: 5, paddingRight: 5}}><a
+                            href="">Start</a></div>
+                        {listItems}
+                        <div onClick={(e) => pageHandler(e, totalPages)} style={{paddingLeft: 5, paddingRight: 5}}><a
+                            href="">End</a></div>
                     </div>
                 </div>
 
