@@ -26,8 +26,8 @@ function ReadingsForm(){
     useEffect(() => {
         document.title = 'My Books';
         fetchBooks(window.localStorage.token).then(res =>{
-            setBookId(res.data.data[0].id)
-            setBooks(res.data.data)
+            setBookId(res.data.data.books[0].id)
+            setBooks(res.data.data.books)
             // setBook(res.data.data[0]);
 
 
@@ -37,7 +37,6 @@ function ReadingsForm(){
                     if(!res.data.success){
                         navigate('/404')
                     }
-                    console.log(res.data.data.book);
                     setBookId(res.data.data.book.id)
                     setBookTitle(res.data.data.book.title)
                     setStarted(res.data.data.started)
