@@ -126,14 +126,17 @@ export async function storeReading(token, data){
     return response.data
 }
 
-export async function fetchReadings(token){
+export async function fetchReadings(token, page=null){
     let headers = {
         headers: {
             'Authorization': 'Bearer ' + token
         }
     }
-
-    const response = await axios.get(all_readings.url, headers).catch((error)=>console.log(error))
+    let url = all_readings.url
+    if(page !== null){
+        url = url + "?page=" + page
+    }
+    const response = await axios.get(url, headers).catch((error)=>console.log(error))
     return {'data': response.data}
 }
 
