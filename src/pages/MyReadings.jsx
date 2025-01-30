@@ -138,23 +138,17 @@ function MyReadings(){
 
                         }
                     </div>
-                    <div className="row">
                         {
                             totalPages > 1 ?
-                                <div onClick={(e) => pageHandler(e, 1)} style={{paddingLeft: 5, paddingRight: 5}}><a
-                                    href="">Start</a></div> : ''
+                                <div className="row">
+                                    <div onClick={(e) => pageHandler(e, 1)} style={{paddingLeft: 5, paddingRight: 5}}><a
+                                        href="">Start</a></div>
+                                    {listItems}
+                                    <div onClick={(e) => pageHandler(e, totalPages)}
+                                         style={{paddingLeft: 5, paddingRight: 5}}><a
+                                        href="">End</a></div>
+                                </div> : ''
                         }
-                        {
-                            totalPages > 1 ?
-                                listItems : ''
-                        }
-                        {
-                            totalPages > 1 ?
-                                <div onClick={(e) => pageHandler(e, totalPages)}
-                                     style={{paddingLeft: 5, paddingRight: 5}}><a
-                                    href="">End</a></div> : ''
-                        }
-                    </div>
                 </div>
 
             </section>
