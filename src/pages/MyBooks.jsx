@@ -11,6 +11,7 @@ function MyBooks() {
     const [books, setBooks] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
+    const [searchTitle, setSearchTitle] = useState()
 
     useEffect(() => {
         document.title = 'My Books';
@@ -52,6 +53,10 @@ function MyBooks() {
         })
     }
 
+    function handleSearch(){
+        alert(searchTitle)
+    }
+
     const listItems = [];
 
     for (let page = 1; page <= totalPages; page++) {
@@ -81,7 +86,12 @@ function MyBooks() {
                         </div>
                         <div className="col-sm-6">
                             <div className="input-group rounded">
-                                <input type="search" className="form-control rounded" placeholder="Search"
+                                <input type="search" className="form-control rounded"
+                                       onChange={(e) => setSearchTitle(e.target.value)}
+                                       onKeyDown={(e) => {
+                                    if (e.key === "Enter")
+                                        handleSearch();
+                                }} placeholder="Search"
                                        aria-label="Search" aria-describedby="search-addon"/>
                                 <span className="input-group-text border-0" id="search-addon">
                                     <i className="fas fa-search"></i>
