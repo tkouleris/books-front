@@ -70,7 +70,7 @@ function MyBooks() {
             <div className="content-header">
                 <div className="container-fluid">
                     <div className="row mb-2">
-                        <div className="col-sm-6">
+                        <div className="col-sm-3">
 
                             <h1 className="m-0">My Books
                                 <button type="button" style={{marginLeft: 10}} onClick={goToBookForm}
@@ -78,6 +78,15 @@ function MyBooks() {
                                     <i className="fas fa-plus-square"></i>
                                 </button>
                             </h1>
+                        </div>
+                        <div className="col-sm-6">
+                            <div className="input-group rounded">
+                                <input type="search" className="form-control rounded" placeholder="Search"
+                                       aria-label="Search" aria-describedby="search-addon"/>
+                                <span className="input-group-text border-0" id="search-addon">
+                                    <i className="fas fa-search"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
 
