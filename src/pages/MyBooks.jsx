@@ -54,7 +54,11 @@ function MyBooks() {
     }
 
     function handleSearch(){
-        alert(searchTitle)
+        fetchBooks(window.localStorage.token, 1, searchTitle).then(res => {
+            setBooks(res.data.data.books)
+            setCurrentPage(res.data.data.current_page)
+            setTotalPages(res.data.data.total_pages)
+        })
     }
 
     const listItems = [];
