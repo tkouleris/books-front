@@ -27,29 +27,32 @@ function SortableItem({item}) {
     return (
         <li ref={setNodeRef} style={style} {...attributes} {...listeners}>
             <table>
-                <tr>
-                    <td rowSpan="2">
-                        <img style={{height: 150, width: 100}} src={item.book.image}/>
-                    </td>
-                    <td>
-                        <h2>{item.book.title}</h2>
-                    </td>
-                </tr>
-                <tr>
-                    <td>{item.book.description}</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td rowSpan="2">
+                            <img style={{height: 150, width: 100}} src={item.book.image}/>
+                        </td>
+                        <td>
+                            <h2>{item.book.title}</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{item.book.description}</td>
+                    </tr>
+                    <tr>
+                        <td rowSpan="2"><button>del</button></td>
+                    </tr>
+                </tbody>
             </table>
-
-
         </li>
     );
 };
 
-export default function DragDropList(){
-    const [items, setItems] = useState([{id:1,book:{}}]);
+export default function DragDropList() {
+    const [items, setItems] = useState([{id: 1, book: {}}]);
 
     useEffect(() => {
-        fetchToReadList(window.localStorage.token).then(response =>{
+        fetchToReadList(window.localStorage.token).then(response => {
             console.log(response.data.data)
             setItems(response.data.data)
         })
@@ -57,9 +60,6 @@ export default function DragDropList(){
 
     const handleDragEnd = (event) => {
         const { active, over } = event;
-        console.log(event);
-        console.log(active);
-        console.log(over);
         if (active.id !== over.id) {
             const oldIndex = items.findIndex((item) => item.id === active.id);
             const newIndex = items.findIndex((item) => item.id === over.id);
