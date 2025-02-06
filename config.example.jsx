@@ -12,3 +12,4 @@ export const delete_reading = {url:'', method: 'delete'};
 export const get_profile = {url:'', method: 'get'};
 export const store_profile = {url:'', method: 'post'};
 export const display_data = {url:'', method: 'get'};
+export const to_read_list = {url:'', method: 'get'};
