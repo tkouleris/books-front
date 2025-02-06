@@ -10,7 +10,7 @@ import {
     store_reading,
     all_readings,
     get_reading,
-    delete_reading, get_profile, store_profile, display_data
+    delete_reading, get_profile, store_profile, display_data, to_read_list
 } from '../../config.jsx'
 
 
@@ -207,5 +207,18 @@ export async function display_page(username){
     let url = display_data.url
     url = url.replace(':username', username)
     const response = await axios.get(url, headers).catch((error)=>console.log(error))
+    return {'data': response.data}
+}
+
+export async function fetchToReadList(token){
+    let headers = {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    }
+    let url = to_read_list.url
+    const response = await axios.get(url, headers).catch((error)=>{
+        return {'data':error.response.data}
+    })
     return {'data': response.data}
 }

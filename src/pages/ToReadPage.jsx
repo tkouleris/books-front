@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { useSortable } from "@dnd-kit/sortable";
@@ -6,15 +6,11 @@ import { CSS } from "@dnd-kit/utilities";
 import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
+import {fetchToReadList} from "../utils/http.jsx";
 
-const initialItems = [
-    { id: "1", text: "Item 1" },
-    { id: "2", text: "Item 2" },
-    { id: "3", text: "Item 3" },
-    { id: "4", text: "Item 4" },
-];
 
 function SortableItem({item}) {
+    console.log(item.id)
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: item.id });
 
     const style = {
@@ -30,16 +26,27 @@ function SortableItem({item}) {
 
     return (
         <li ref={setNodeRef} style={style} {...attributes} {...listeners}>
-            {item.text}
+            <img style={{height: 150, width: 100}} src={item.book.image} />
+            {item.book.title}
         </li>
     );
 };
 
 export default function DragDropList(){
-    const [items, setItems] = useState(initialItems);
+    const [items, setItems] = useState([{id:1,book:{}}]);
+
+    useEffect(() => {
+        fetchToReadList(window.localStorage.token).then(response =>{
+            console.log(response.data.data)
+            setItems(response.data.data)
+        })
+    }, []);
 
     const handleDragEnd = (event) => {
         const { active, over } = event;
+        console.log(event);
+        console.log(active);
+        console.log(over);
         if (active.id !== over.id) {
             const oldIndex = items.findIndex((item) => item.id === active.id);
             const newIndex = items.findIndex((item) => item.id === over.id);
