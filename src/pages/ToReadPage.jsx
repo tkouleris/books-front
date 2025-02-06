@@ -26,8 +26,21 @@ function SortableItem({item}) {
 
     return (
         <li ref={setNodeRef} style={style} {...attributes} {...listeners}>
-            <img style={{height: 150, width: 100}} src={item.book.image} />
-            {item.book.title}
+            <table>
+                <tr>
+                    <td rowSpan="2">
+                        <img style={{height: 150, width: 100}} src={item.book.image}/>
+                    </td>
+                    <td>
+                        <h2>{item.book.title}</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{item.book.description}</td>
+                </tr>
+            </table>
+
+
         </li>
     );
 };
@@ -62,7 +75,7 @@ export default function DragDropList(){
                 <div className="container-fluid">
                     <div className="row mb-2">
                         <div className="col-sm-6">
-                            <h1 className="m-0">Profile</h1>
+                            <h1 className="m-0">Read List</h1>
                         </div>
                     </div>
                 </div>
@@ -73,11 +86,11 @@ export default function DragDropList(){
                         <div className="col-12">
                             <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                                 <SortableContext items={items} strategy={verticalListSortingStrategy}>
-                                    <ul className="bg-gray-100 p-4 rounded-lg">
+                                    <ol className="bg-gray-100 p-4 rounded-lg">
                                         {items.map((item) => (
                                             <SortableItem key={item.id} item={item}/>
                                         ))}
-                                    </ul>
+                                    </ol>
                                 </SortableContext>
                             </DndContext>
                         </div>
