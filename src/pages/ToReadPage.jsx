@@ -3,6 +3,9 @@ import { DndContext, closestCenter } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import Header from "../components/Header.jsx";
+import SideNav from "../components/SideNav.jsx";
+import Footer from "../components/Footer.jsx";
 
 const initialItems = [
     { id: "1", text: "Item 1" },
@@ -44,19 +47,46 @@ export default function DragDropList(){
         }
     };
 
-    return (
-        <div className="p-4 max-w-md mx-auto">
-            <h2 className="text-xl font-bold mb-4">Drag and Drop List</h2>
-            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-                <SortableContext items={items} strategy={verticalListSortingStrategy}>
-                    <ul className="bg-gray-100 p-4 rounded-lg">
-                        {items.map((item) => (
-                            <SortableItem key={item.id} item={item} />
-                        ))}
-                    </ul>
-                </SortableContext>
-            </DndContext>
+    return <div className="wrapper">
+        <Header/>
+
+        <div className="content-wrapper">
+            <div className="content-header">
+                <div className="container-fluid">
+                    <div className="row mb-2">
+                        <div className="col-sm-6">
+                            <h1 className="m-0">Profile</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section className="content">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-12">
+                            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                                <SortableContext items={items} strategy={verticalListSortingStrategy}>
+                                    <ul className="bg-gray-100 p-4 rounded-lg">
+                                        {items.map((item) => (
+                                            <SortableItem key={item.id} item={item}/>
+                                        ))}
+                                    </ul>
+                                </SortableContext>
+                            </DndContext>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </section>
         </div>
-    );
+
+
+        <SideNav/>
+        <Footer/>
+    </div>;
+
 };
 
