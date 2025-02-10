@@ -13,3 +13,4 @@ export const get_profile = {url:'', method: 'get'};
 export const store_profile = {url:'', method: 'post'};
 export const display_data = {url:'', method: 'get'};
 export const to_read_list = {url:'', method: 'get'};
+export const remove_from_red_list = {url:'', method: 'delete'};
