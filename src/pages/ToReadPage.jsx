@@ -1,16 +1,25 @@
 import {useEffect, useState} from "react";
-import { DndContext, closestCenter } from "@dnd-kit/core";
+import {
+    DndContext,
+    closestCenter,
+    useSensor,
+    PointerSensor,
+    MouseSensor,
+    TouchSensor,
+    KeyboardSensor, useSensors
+} from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
-import {fetchToReadList} from "../utils/http.jsx";
+import {deleteFromToReadList, fetchToReadList} from "../utils/http.jsx";
 
 
 function SortableItem({item}) {
-    console.log(item.id)
+
+
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: item.id });
 
     const style = {
@@ -23,6 +32,10 @@ function SortableItem({item}) {
         boxShadow: "0px 2px 5px rgba(0,0,0,0.2)",
         cursor: "grab",
     };
+
+    function removeFromListHandler(id){
+        alert(id)
+    }
 
     return (
         <li ref={setNodeRef} style={style} {...attributes} {...listeners}>
@@ -41,7 +54,10 @@ function SortableItem({item}) {
                     </tr>
                     <tr>
                         <td rowSpan="2">
-                            <button type="button" className="btn btn-danger">
+                            <button type="button"
+                                    // onClick={()=>removeFromListHandler(item.id)}
+                                    onClick={() => removeFromListHandler(item.id)}
+                                    className="btn btn-danger">
                                 <i className="far fa-trash-alt"></i>
                             </button>
                         </td>
@@ -53,6 +69,21 @@ function SortableItem({item}) {
 };
 
 export default function DragDropList() {
+    const pointerSensor = useSensor(PointerSensor, {
+        activationConstraint: {
+            distance: 0.01
+        }
+    })
+    const mouseSensor = useSensor(MouseSensor)
+    const touchSensor = useSensor(TouchSensor)
+    const keyboardSensor = useSensor(KeyboardSensor)
+
+    const sensors = useSensors(
+        mouseSensor,
+        touchSensor,
+        keyboardSensor,
+        pointerSensor
+    )
     const [items, setItems] = useState([{id: 1, book: {}}]);
 
     useEffect(() => {
@@ -71,6 +102,7 @@ export default function DragDropList() {
         }
     };
 
+
     return <div className="wrapper">
         <Header/>
 
@@ -88,7 +120,7 @@ export default function DragDropList() {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-12">
-                            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd} sensors={sensors}>
                                 <SortableContext items={items} strategy={verticalListSortingStrategy}>
                                     <ol className="bg-gray-100 p-4 rounded-lg">
                                         {items.map((item) => (
