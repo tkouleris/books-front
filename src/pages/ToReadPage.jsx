@@ -26,21 +26,25 @@ function SortableItem({item}) {
 
     return (
         <li ref={setNodeRef} style={style} {...attributes} {...listeners}>
-            <table>
+            <table style={{width:"100%"}}>
                 <tbody>
                     <tr>
-                        <td rowSpan="2">
+                        <td rowSpan="2" style={{width:100}}>
                             <img style={{height: 150, width: 100}} src={item.book.image}/>
                         </td>
-                        <td>
+                        <td >
                             <h2>{item.book.title}</h2>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style={{borderBottom: "3px solid rgb(212, 212, 212)"}}>
                         <td>{item.book.description}</td>
                     </tr>
                     <tr>
-                        <td rowSpan="2"><button>del</button></td>
+                        <td rowSpan="2">
+                            <button type="button" className="btn btn-danger">
+                                <i className="far fa-trash-alt"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
