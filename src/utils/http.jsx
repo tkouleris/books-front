@@ -12,6 +12,7 @@ import {
     get_reading,
     delete_reading, get_profile, store_profile, display_data, to_read_list
 } from '../../config.jsx'
+import {remove_from_red_list} from "../../config.example.jsx";
 
 
 export async function login(credentials){
@@ -220,5 +221,18 @@ export async function fetchToReadList(token){
     const response = await axios.get(url, headers).catch((error)=>{
         return {'data':error.response.data}
     })
+    return {'data': response.data}
+}
+
+export async function deleteFromToReadList(token, readId){
+
+    let headers = {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    }
+    let url = remove_from_red_list.url
+    url = url.replace(':id', readId)
+    const response = await axios.delete(url, headers).catch((error)=>console.log(error))
     return {'data': response.data}
 }
