@@ -17,7 +17,7 @@ import Footer from "../components/Footer.jsx";
 import {deleteFromToReadList, fetchToReadList} from "../utils/http.jsx";
 
 
-function SortableItem({item}) {
+function SortableItem({item, setList}) {
 
 
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: item.id });
@@ -35,6 +35,9 @@ function SortableItem({item}) {
 
     function removeFromListHandler(id){
         alert(id)
+        deleteFromToReadList(window.localStorage.token, id).then((response)=>{
+            setList(response.data.data)
+        })
     }
 
     return (
@@ -56,7 +59,7 @@ function SortableItem({item}) {
                         <td rowSpan="2">
                             <button type="button"
                                     // onClick={()=>removeFromListHandler(item.id)}
-                                    onClick={() => removeFromListHandler(item.id)}
+                                    onClick={() => removeFromListHandler(item.book.id)}
                                     className="btn btn-danger">
                                 <i className="far fa-trash-alt"></i>
                             </button>
@@ -124,7 +127,7 @@ export default function DragDropList() {
                                 <SortableContext items={items} strategy={verticalListSortingStrategy}>
                                     <ol className="bg-gray-100 p-4 rounded-lg">
                                         {items.map((item) => (
-                                            <SortableItem key={item.id} item={item}/>
+                                            <SortableItem key={item.id} item={item} setList={setItems}/>
                                         ))}
                                     </ol>
                                 </SortableContext>

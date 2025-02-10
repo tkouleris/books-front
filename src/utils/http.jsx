@@ -10,9 +10,8 @@ import {
     store_reading,
     all_readings,
     get_reading,
-    delete_reading, get_profile, store_profile, display_data, to_read_list
+    delete_reading, get_profile, store_profile, display_data, to_read_list,remove_from_red_list
 } from '../../config.jsx'
-import {remove_from_red_list} from "../../config.example.jsx";
 
 
 export async function login(credentials){
