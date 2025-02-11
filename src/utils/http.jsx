@@ -10,7 +10,7 @@ import {
     store_reading,
     all_readings,
     get_reading,
-    delete_reading, get_profile, store_profile, display_data, to_read_list,remove_from_red_list
+    delete_reading, get_profile, store_profile, display_data, to_read_list,remove_from_read_list
 } from '../../config.jsx'
 
 
@@ -230,7 +230,7 @@ export async function deleteFromToReadList(token, readId){
             'Authorization': 'Bearer ' + token
         }
     }
-    let url = remove_from_red_list.url
+    let url = remove_from_read_list.url
     url = url.replace(':id', readId)
     const response = await axios.delete(url, headers).catch((error)=>console.log(error))
     return {'data': response.data}
