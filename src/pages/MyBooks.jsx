@@ -123,6 +123,10 @@ function MyBooks() {
                                                      src={book.image}/>
                                             </div>
                                             <div className="card-footer" style={{textAlign: 'right'}}>
+                                                <a className="btn btn-default"
+                                                   style={{marginRight: 5, color: "#ff0000"}}>
+                                                    <i className="fas fa-heart"></i>
+                                                </a>
                                                 <a className="btn btn-default" onClick={() => goToEditBook(book.id)}
                                                    style={{marginRight: 5}}><i className="fas fa-edit"></i></a>
                                                 <a className="btn btn-danger"
