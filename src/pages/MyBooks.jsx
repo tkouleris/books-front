@@ -3,7 +3,7 @@ import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {deleteBook, fetchBooks} from "../utils/http.jsx";
+import {addToToReadList, deleteBook, fetchBooks} from "../utils/http.jsx";
 
 function MyBooks() {
     const navigate = useNavigate();
@@ -50,6 +50,12 @@ function MyBooks() {
             setBooks(res.data.data.books)
             setCurrentPage(res.data.data.current_page)
             setTotalPages(res.data.data.total_pages)
+        })
+    }
+
+    function addToReadListHandler(bookId){
+        addToToReadList(window.localStorage.token, bookId).then(res => {
+            console.log(res)
         })
     }
 
@@ -124,7 +130,9 @@ function MyBooks() {
                                             </div>
                                             <div className="card-footer" style={{textAlign: 'right'}}>
                                                 <a className="btn btn-default"
-                                                   style={{marginRight: 5, color: "#ff0000"}}>
+                                                   style={{marginRight: 5, color: "#ff0000"}}
+                                                   onClick={()=>addToReadListHandler(book.id)}
+                                                >
                                                     <i className="fas fa-heart"></i>
                                                 </a>
                                                 <a className="btn btn-default" onClick={() => goToEditBook(book.id)}
