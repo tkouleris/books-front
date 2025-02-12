@@ -3,7 +3,7 @@ import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {addToToReadList, deleteBook, fetchBooks} from "../utils/http.jsx";
+import {addToToReadList, deleteBook, deleteFromToReadList, fetchBooks} from "../utils/http.jsx";
 
 function MyBooks() {
     const navigate = useNavigate();
@@ -53,18 +53,50 @@ function MyBooks() {
         })
     }
 
-    function addToReadListHandler(bookId){
-        addToToReadList(window.localStorage.token, bookId).then(res => {
-            console.log(res)
-        })
-    }
-
     function handleSearch(){
         fetchBooks(window.localStorage.token, 1, searchTitle).then(res => {
             setBooks(res.data.data.books)
             setCurrentPage(res.data.data.current_page)
             setTotalPages(res.data.data.total_pages)
         })
+    }
+
+    function addToReadListHandler(bookId){
+        addToToReadList(window.localStorage.token, bookId).then(() => {
+            fetchBooks(window.localStorage.token, currentPage).then(res => {
+                setBooks(res.data.data.books)
+                setCurrentPage(res.data.data.current_page)
+                setTotalPages(res.data.data.total_pages)
+            })
+        })
+    }
+
+    function removeFromReadListHandler(bookId){
+        deleteFromToReadList(window.localStorage.token, bookId).then(() => {
+            fetchBooks(window.localStorage.token, currentPage).then(res => {
+                setBooks(res.data.data.books)
+                setCurrentPage(res.data.data.current_page)
+                setTotalPages(res.data.data.total_pages)
+            })
+        })
+    }
+
+    function toReadIcon(book){
+        if(book.toread) {
+            return <a className="btn btn-default"
+                      style={{marginRight: 5, color: "#ff0000"}}
+                      onClick={() => removeFromReadListHandler(book.id)}
+            >
+                <i className="fas fa-heart"></i>
+            </a>
+        } else {
+            return <a className="btn btn-default"
+               style={{marginRight: 5, color: "#808080"}}
+               onClick={() => addToReadListHandler(book.id)}
+            >
+                <i className="fas fa-heart"></i>
+            </a>
+        }
     }
 
     const listItems = [];
@@ -129,12 +161,7 @@ function MyBooks() {
                                                      src={book.image}/>
                                             </div>
                                             <div className="card-footer" style={{textAlign: 'right'}}>
-                                                <a className="btn btn-default"
-                                                   style={{marginRight: 5, color: "#ff0000"}}
-                                                   onClick={()=>addToReadListHandler(book.id)}
-                                                >
-                                                    <i className="fas fa-heart"></i>
-                                                </a>
+                                                {toReadIcon(book)}
                                                 <a className="btn btn-default" onClick={() => goToEditBook(book.id)}
                                                    style={{marginRight: 5}}><i className="fas fa-edit"></i></a>
                                                 <a className="btn btn-danger"
