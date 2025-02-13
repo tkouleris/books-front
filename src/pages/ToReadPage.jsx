@@ -91,7 +91,6 @@ export default function DragDropList() {
 
     useEffect(() => {
         fetchToReadList(window.localStorage.token).then(response => {
-            console.log(response.data.data)
             setItems(response.data.data)
         })
     }, []);
@@ -99,8 +98,6 @@ export default function DragDropList() {
     const handleDragEnd = (event) => {
         const { active, over } = event;
         if (active.id !== over.id) {
-            console.log(active)
-            console.log(over)
             const oldIndex = items.findIndex((item) => item.id === active.id);
             const newIndex = items.findIndex((item) => item.id === over.id);
             setItems(arrayMove(items, oldIndex, newIndex));
