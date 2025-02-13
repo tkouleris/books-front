@@ -11,6 +11,10 @@ function SideNav() {
         navigate('/readings')
     }
 
+    function goToReadingList(){
+        navigate('/to_read')
+    }
+
     function goToDashboard(){
         navigate('/dashboard')
     }
@@ -100,6 +104,14 @@ function SideNav() {
                                 <i className="nav-icon fas fa-book"></i>
                                 <p>
                                     My Books
+                                </p>
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a href="" className="nav-link" onClick={goToReadingList}>
+                                <i className="nav-icon fas fa-heart"></i>
+                                <p>
+                                    Reading List
                                 </p>
                             </a>
                         </li>
