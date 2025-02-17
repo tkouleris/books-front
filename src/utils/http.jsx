@@ -10,7 +10,14 @@ import {
     store_reading,
     all_readings,
     get_reading,
-    delete_reading, get_profile, store_profile, display_data, to_read_list, remove_from_read_list, add_to_read_list
+    delete_reading,
+    get_profile,
+    store_profile,
+    display_data,
+    to_read_list,
+    remove_from_read_list,
+    add_to_read_list,
+    swap_to_read_list
 } from '../../config.jsx'
 
 
@@ -249,6 +256,26 @@ export async function addToToReadList(token, book_id){
 
     const response = await axios.post(
         add_to_read_list.url,data, headers
+    ).catch((e) => {
+        return {'data':{ 'message':e.response.data.message, 'status': false}};
+    });
+    return response.data
+}
+
+export async function swapBooks(token, id_1, id_2){
+    let headers = {
+        headers: {
+            "content-type": "application/json",
+            'Authorization': 'Bearer ' + token
+        }
+    }
+
+    let data = {}
+    data["id_1"] = id_1
+    data["id_2"] = id_2
+
+    const response = await axios.post(
+        swap_to_read_list.url,data, headers
     ).catch((e) => {
         return {'data':{ 'message':e.response.data.message, 'status': false}};
     });
