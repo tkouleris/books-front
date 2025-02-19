@@ -102,9 +102,6 @@ export default function DragDropList() {
             swapBooks(window.localStorage.token, active.id, over.id).then( result =>{
                 setItems(result.data)
             })
-            // const oldIndex = items.findIndex((item) => item.id === active.id);
-            // const newIndex = items.findIndex((item) => item.id === over.id);
-            // setItems(arrayMove(items, oldIndex, newIndex));
         }
     };
 
