@@ -14,7 +14,7 @@ import { CSS } from "@dnd-kit/utilities";
 import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
-import {deleteFromToReadList, fetchToReadList, swapBooks} from "../utils/http.jsx";
+import {deleteFromToReadList, fetchToReadList, reorderToReadList} from "../utils/http.jsx";
 
 
 function SortableItem({item, setList}) {
@@ -99,7 +99,7 @@ export default function DragDropList() {
     const handleDragEnd = (event) => {
         const { active, over } = event;
         if (active.id !== over.id) {
-            swapBooks(window.localStorage.token, active.id, over.id).then( result =>{
+            reorderToReadList(window.localStorage.token, active.id, over.id).then( result =>{
                 setItems(result.data)
             })
         }

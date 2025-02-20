@@ -17,7 +17,7 @@ import {
     to_read_list,
     remove_from_read_list,
     add_to_read_list,
-    swap_to_read_list
+    reorder_to_read_list
 } from '../../config.jsx'
 
 
@@ -262,7 +262,7 @@ export async function addToToReadList(token, book_id){
     return response.data
 }
 
-export async function swapBooks(token, id_1, id_2){
+export async function reorderToReadList(token, id_1, id_2){
     let headers = {
         headers: {
             "content-type": "application/json",
@@ -275,7 +275,7 @@ export async function swapBooks(token, id_1, id_2){
     data["id_2"] = id_2
 
     const response = await axios.post(
-        swap_to_read_list.url,data, headers
+        reorder_to_read_list.url,data, headers
     ).catch((e) => {
         return {'data':{ 'message':e.response.data.message, 'status': false}};
     });
