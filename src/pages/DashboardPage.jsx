@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {fetchDashboard} from "../utils/http.jsx";
+import {dashboard_data, fetchDashboard} from "../utils/http.jsx";
 import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
@@ -7,17 +7,19 @@ import '../../public/dist/js/pages/dashboard.js'
 
 function DashboardPage(){
 
-    const [currentReadings, setCurrentReadings] = useState()
-    const [latestReadings, setLatestReadings] = useState()
+    const [totalBooks, setTotalBooks] = useState(0)
+    const [totalCurrentlyReading, setTotalCurrentlyReading] = useState(0)
+    const [totalToRead, setTotalToRead] = useState(0)
 
     useEffect(() => {
         let bodyElement = document.getElementsByTagName('body')[0];
         bodyElement.className = "hold-transition sidebar-mini layout-fixed";
         document.title = 'My Books - Dashboard';
 
-        fetchDashboard(window.localStorage.token, window.localStorage.username).then((response)=>{
-            setCurrentReadings(response.data.data.current_readings)
-            setLatestReadings(response.data.data.latest_readings)
+        dashboard_data(window.localStorage.token).then((response)=>{
+            setTotalBooks(response.data.data.total_books)
+            setTotalCurrentlyReading(response.data.data.total_currently_reading)
+            setTotalToRead(response.data.data.total_to_read_books)
         })
     }, []);
 
@@ -39,52 +41,52 @@ function DashboardPage(){
                         <div className="col-lg-3 col-6">
                             <div className="small-box bg-info">
                                 <div className="inner">
-                                    <h3>150</h3>
-                                    <p>New Orders</p>
+                                    <h3>{totalBooks}</h3>
+                                    <p>Total Books</p>
                                 </div>
                                 <div className="icon">
-                                    <i className="ion ion-bag"/>
+                                    <i className="ion-ios-book-outline"/>
                                 </div>
-                                <a href="#" className="small-box-footer">
-                                    More info <i className="fas fa-arrow-circle-right"/>
-                                </a>
+                                <div style={{height: 30}}></div>
+                                {/*<a href="#" className="small-box-footer">*/}
+                                {/*    More info <i className="fas fa-arrow-circle-right"/>*/}
+                                {/*</a>*/}
                             </div>
                         </div>
                         <div className="col-lg-3 col-6">
                             <div className="small-box bg-success">
                                 <div className="inner">
                                     <h3>
-                                        53<sup style={{fontSize: 20}}>%</sup>
+                                        {totalCurrentlyReading}
                                     </h3>
-                                    <p>Bounce Rate</p>
+                                    <p>Currently Reading</p>
                                 </div>
                                 <div className="icon">
-                                    <i className="ion ion-stats-bars"/>
+                                    <i className="ion-ios-bookmarks-outline"/>
                                 </div>
-                                <a href="#" className="small-box-footer">
-                                    More info <i className="fas fa-arrow-circle-right"/>
-                                </a>
+                                <div style={{height: 30}}></div>
                             </div>
                         </div>
                         <div className="col-lg-3 col-6">
                             <div className="small-box bg-warning">
                                 <div className="inner">
-                                    <h3>44</h3>
-                                    <p>User Registrations</p>
+                                    <h3>{totalToRead}</h3>
+                                    <p>Books In Reading List</p>
                                 </div>
                                 <div className="icon">
-                                    <i className="ion ion-person-add"/>
+                                    <i className="ion-ios-list-outline"/>
                                 </div>
-                                <a href="#" className="small-box-footer">
-                                    More info <i className="fas fa-arrow-circle-right"/>
-                                </a>
+                                <div style={{height: 30}}></div>
+                                {/*<a href="#" className="small-box-footer">*/}
+                                {/*    More info <i className="fas fa-arrow-circle-right"/>*/}
+                                {/*</a>*/}
                             </div>
                         </div>
                         <div className="col-lg-3 col-6">
                             <div className="small-box bg-danger">
                                 <div className="inner">
-                                    <h3>65</h3>
-                                    <p>Unique Visitors</p>
+                                <h3>{totalToRead}</h3>
+                                    <p>Books In Reading List</p>
                                 </div>
                                 <div className="icon">
                                     <i className="ion ion-pie-graph"/>

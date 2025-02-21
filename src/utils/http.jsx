@@ -289,6 +289,6 @@ export async function dashboard_data(token){
         }
     }
     let url = dashboard.url
-    const response = await axios.post(url, headers).catch((error)=>console.log(error))
+    const response = await axios.get(url, headers).catch((error)=>console.log(error))
     return {'data': response.data}
 }
