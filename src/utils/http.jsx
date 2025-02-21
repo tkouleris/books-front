@@ -17,7 +17,7 @@ import {
     to_read_list,
     remove_from_read_list,
     add_to_read_list,
-    reorder_to_read_list
+    reorder_to_read_list, dashboard
 } from '../../config.jsx'
 
 
@@ -280,4 +280,15 @@ export async function reorderToReadList(token, id_1, id_2){
         return {'data':{ 'message':e.response.data.message, 'status': false}};
     });
     return response.data
+}
+
+export async function dashboard_data(token){
+    let headers = {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    }
+    let url = dashboard.url
+    const response = await axios.post(url, headers).catch((error)=>console.log(error))
+    return {'data': response.data}
 }
