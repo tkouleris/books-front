@@ -14,6 +14,7 @@ import ReadingsForm from "./pages/ReadingsForm.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import DisplayPage from "./pages/DisplayPage.jsx";
 import ToReadPage from "./pages/ToReadPage.jsx";
+import UserVerificationPage from "./pages/UserVerificationPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
     {
         path: '/register',
         element: <RegistrationPage />,
+    },
+    {
+        path: '/user/verify/:token',
+        element: <UserVerificationPage />,
     },
     {
         path: '/display/:username',
