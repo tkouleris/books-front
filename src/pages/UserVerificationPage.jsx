@@ -1,13 +1,18 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {verify_user} from "../utils/http.jsx";
+
 
 export default function UserVerificationPage() {
     let { token } = useParams();
-    // const [msg, setMsg] = useState('')
+    const [msg, setMsg] = useState('')
 
-    // useEffect(() => {
-    //
-    // }, []);
+    useEffect(() => {
+        verify_user(token).then(res => {
+            console.log(res)
+            setMsg(res.data.message)
+        });
+    }, []);
 
 
     return <div className="content-wrapper" style={{marginLeft: 40}}>
@@ -15,7 +20,7 @@ export default function UserVerificationPage() {
             <div className="container-fluid">
                 <div className="row mb-2">
                     <div className="col-sm-6">
-                        <h1 className="m-0">Verification Page</h1>
+                        <h1 className="m-0">{msg}</h1>
                     </div>
                     <div className="col-sm-6">
 

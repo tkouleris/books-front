@@ -17,7 +17,9 @@ import {
     to_read_list,
     remove_from_read_list,
     add_to_read_list,
-    reorder_to_read_list, dashboard
+    reorder_to_read_list,
+    dashboard,
+    user_verification
 } from '../../config.jsx'
 
 
@@ -290,5 +292,21 @@ export async function dashboard_data(token){
     }
     let url = dashboard.url
     const response = await axios.get(url, headers).catch((error)=>console.log(error))
+    return {'data': response.data}
+}
+
+
+export async function verify_user(token){
+    let headers = {
+        headers: {
+            "content-type": "application/json"
+        }
+    }
+    let data = {
+        "token":token
+    }
+    const response = await axios.post(
+        user_verification.url,data, headers
+    ).catch((error)=>console.log(error))
     return {'data': response.data}
 }
