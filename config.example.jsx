@@ -17,3 +17,4 @@ export const remove_from_read_list = {url:'', method: 'delete'};
 export const add_to_read_list = {url:'', method: 'post'};
 export const swap_to_read_list = {url:'', method: 'post'};
 export const dashboard = {url:'', method: 'get'};
+export const user_verification = {url:'', method: 'post'};
