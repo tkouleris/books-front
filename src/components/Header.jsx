@@ -1,15 +1,20 @@
 import {logout} from "../utils/helpers.jsx";
 import {useNavigate} from "react-router-dom";
+import {send_verification_request} from "../utils/http.jsx";
 
 function Header() {
     const navigate = useNavigate();
 
-
+    function verificationRequestHandler(){
+        send_verification_request(window.localStorage.token).then( out =>{
+            alert("Check your email")
+        })
+    }
 
     let verificationRequest = ''
     if(window.localStorage.verified){
         verificationRequest = <div style={{width: '100%', textAlign: 'center', backgroundColor: 'red', color: "white"}}>
-            <h4>Please verify you account <a>here</a></h4>
+            <h4>Please verify you account <a role="button" onClick={verificationRequestHandler}>here</a></h4>
         </div>
     }
 

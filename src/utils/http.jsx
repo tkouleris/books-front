@@ -19,7 +19,7 @@ import {
     add_to_read_list,
     reorder_to_read_list,
     dashboard,
-    user_verification
+    user_verification, verification_request
 } from '../../config.jsx'
 
 
@@ -299,7 +299,7 @@ export async function dashboard_data(token){
 export async function verify_user(token){
     let headers = {
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
         }
     }
     let data = {
@@ -307,6 +307,20 @@ export async function verify_user(token){
     }
     const response = await axios.post(
         user_verification.url,data, headers
+    ).catch((error)=>console.log(error))
+    return {'data': response.data}
+}
+
+export async function send_verification_request(token){
+    let headers = {
+        headers: {
+            "content-type": "application/json",
+            'Authorization': 'Bearer ' + token
+        }
+    }
+
+    const response = await axios.post(
+        verification_request.url, {}, headers
     ).catch((error)=>console.log(error))
     return {'data': response.data}
 }
