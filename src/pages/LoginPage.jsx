@@ -21,6 +21,7 @@ function LoginPage() {
                 window.localStorage.setItem('username', response.data.data.username);
                 window.localStorage.setItem('token', response.data.data.token);
                 window.localStorage.setItem('avatar', response.data.data.avatar);
+                window.localStorage.setItem('verified', response.data.data.verified);
                 navigate("/dashboard");
                 return;
             }
