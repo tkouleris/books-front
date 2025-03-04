@@ -11,8 +11,9 @@ function Header() {
         })
     }
 
+    let verified = window.localStorage.verified === 'true'
     let verificationRequest = ''
-    if(window.localStorage.verified){
+    if(!verified){
         verificationRequest = <div style={{width: '100%', textAlign: 'center', backgroundColor: 'red', color: "white"}}>
             <h4>Please verify you account <a role="button" onClick={verificationRequestHandler}>here</a></h4>
         </div>
