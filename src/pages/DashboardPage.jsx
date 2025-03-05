@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {dashboard_data, fetchDashboard} from "../utils/http.jsx";
+import {dashboard_data} from "../utils/http.jsx";
 import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
