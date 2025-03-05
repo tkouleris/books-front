@@ -1,6 +1,7 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {verify_user} from "../utils/http.jsx";
+import {logout} from "../utils/helpers.jsx";
 
 
 export default function UserVerificationPage() {
@@ -9,8 +10,8 @@ export default function UserVerificationPage() {
 
     useEffect(() => {
         verify_user(token).then(res => {
-            console.log(res)
             setMsg(res.data.message)
+            logout()
         });
     }, []);
 
