@@ -64,12 +64,11 @@ function ProfilePage() {
         storeProfile(window.localStorage.token, formdata).then(res =>{
             window.localStorage.avatar = res.data.avatar;
             if(logout_user){
-                logout()
+                logout(navigate)
             }
             window.location.reload();
         })
     }
-
 
 
     return <div className="wrapper">
