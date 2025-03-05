@@ -3,9 +3,14 @@ import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import {useEffect, useState} from "react";
 import {fetchProfile, storeProfile} from "../utils/http.jsx";
+import {logout} from "../utils/helpers.jsx";
+import {useNavigate} from "react-router-dom";
 
 function ProfilePage() {
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('')
+    const [oldEmail, setOldEmail] = useState()
     const [username, setUsername] = useState()
     const [password, setPassword] = useState(null)
     const [avatar, setAvatar] = useState(null)
@@ -17,6 +22,7 @@ function ProfilePage() {
 
         fetchProfile(window.localStorage.token).then(res=>{
             setEmail(res.data.data.email)
+            setOldEmail(res.data.data.email)
             setUsername(res.data.data.username)
             setAvatar(res.data.data.avatar)
             setUserId(res.data.data.id)
@@ -37,9 +43,14 @@ function ProfilePage() {
 
     function handleSubmit(event){
         event.preventDefault();
-
         let formdata = new FormData();
-        formdata.append("email", email)
+
+        let logout_user = false;
+        if(oldEmail !== email && confirm("Changing email will logout. Accept?")){
+            logout_user = true;
+            formdata.append("email", email)
+        }
+
         formdata.append("username", username)
 
         if(password !== null){
@@ -52,6 +63,9 @@ function ProfilePage() {
 
         storeProfile(window.localStorage.token, formdata).then(res =>{
             window.localStorage.avatar = res.data.avatar;
+            if(logout_user){
+                logout()
+            }
             window.location.reload();
         })
     }
