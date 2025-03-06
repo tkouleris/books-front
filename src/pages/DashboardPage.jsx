@@ -143,35 +143,14 @@ function DashboardPage(){
                         </div>
                     </div>
                     <div className="row">
-                        <section className="col-lg-7 connectedSortable">
+                        <section className="col-lg-12 connectedSortable">
                             <div className="card">
                                 <div className="card-header">
                                     <h3 className="card-title">
                                         <i className="fas fa-chart-pie mr-1"/>
                                         Books Per Year
                                     </h3>
-                                    <div className="card-tools">
-                                        <ul className="nav nav-pills ml-auto">
-                                            <li className="nav-item">
-                                                <a
-                                                    className="nav-link active"
-                                                    href="#revenue-chart"
-                                                    data-toggle="tab"
-                                                >
-                                                    Area
-                                                </a>
-                                            </li>
-                                            <li className="nav-item">
-                                                <a
-                                                    className="nav-link"
-                                                    href="#sales-chart"
-                                                    data-toggle="tab"
-                                                >
-                                                    Donut
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+
                                 </div>
                                 <div className="card-body">
                                     <div className="tab-content p-0">
