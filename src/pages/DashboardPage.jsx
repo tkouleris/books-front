@@ -4,6 +4,7 @@ import Header from "../components/Header.jsx";
 import SideNav from "../components/SideNav.jsx";
 import Footer from "../components/Footer.jsx";
 import '../../public/dist/js/pages/dashboard.js'
+import $ from 'jquery';
 
 function DashboardPage(){
 
@@ -11,6 +12,53 @@ function DashboardPage(){
     const [totalCurrentlyReading, setTotalCurrentlyReading] = useState(0)
     const [totalToRead, setTotalToRead] = useState(0)
     const [readPercentage, setReadPercentage] = useState()
+
+    var salesChartCanvas = $('#revenue-chart-canvas')
+
+    var salesChartData = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [
+            {
+                label: 'Digital Goods',
+                backgroundColor: 'rgba(60,141,188,0.9)',
+                borderColor: 'rgba(60,141,188,0.8)',
+                pointRadius: false,
+                pointColor: '#3b8bba',
+                pointStrokeColor: 'rgba(60,141,188,1)',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(60,141,188,1)',
+                data: [28, 48, 40, 19, 86, 27, 90]
+            },
+        ]
+    }
+
+    var salesChartOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
+        legend: {
+            display: false
+        },
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display: false
+                }
+            }],
+            yAxes: [{
+                gridLines: {
+                    display: false
+                }
+            }]
+        }
+    }
+
+    // This will get the first returned node in the jQuery collection.
+    // eslint-disable-next-line no-unused-vars
+    var salesChart = new Chart(salesChartCanvas, { // lgtm[js/unused-local-variable]
+        type: 'line',
+        data: salesChartData,
+        options: salesChartOptions
+    })
 
     useEffect(() => {
         let bodyElement = document.getElementsByTagName('body')[0];
@@ -50,9 +98,6 @@ function DashboardPage(){
                                     <i className="ion-ios-book-outline"/>
                                 </div>
                                 <div style={{height: 30}}></div>
-                                {/*<a href="#" className="small-box-footer">*/}
-                                {/*    More info <i className="fas fa-arrow-circle-right"/>*/}
-                                {/*</a>*/}
                             </div>
                         </div>
                         <div className="col-lg-3 col-6">
@@ -79,9 +124,6 @@ function DashboardPage(){
                                     <i className="ion-ios-list-outline"/>
                                 </div>
                                 <div style={{height: 30}}></div>
-                                {/*<a href="#" className="small-box-footer">*/}
-                                {/*    More info <i className="fas fa-arrow-circle-right"/>*/}
-                                {/*</a>*/}
                             </div>
                         </div>
                         <div className="col-lg-3 col-6">
@@ -103,7 +145,7 @@ function DashboardPage(){
                                 <div className="card-header">
                                     <h3 className="card-title">
                                         <i className="fas fa-chart-pie mr-1"/>
-                                        Sales
+                                        Books Per Year
                                     </h3>
                                     <div className="card-tools">
                                         <ul className="nav nav-pills ml-auto">
