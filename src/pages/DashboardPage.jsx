@@ -10,6 +10,7 @@ function DashboardPage(){
     const [totalBooks, setTotalBooks] = useState(0)
     const [totalCurrentlyReading, setTotalCurrentlyReading] = useState(0)
     const [totalToRead, setTotalToRead] = useState(0)
+    const [readPercentage, setReadPercentage] = useState()
 
     useEffect(() => {
         let bodyElement = document.getElementsByTagName('body')[0];
@@ -20,6 +21,7 @@ function DashboardPage(){
             setTotalBooks(response.data.data.total_books)
             setTotalCurrentlyReading(response.data.data.total_currently_reading)
             setTotalToRead(response.data.data.total_to_read_books)
+            setReadPercentage(response.data.data.read_percentage)
         })
     }, []);
 
@@ -85,15 +87,13 @@ function DashboardPage(){
                         <div className="col-lg-3 col-6">
                             <div className="small-box bg-danger">
                                 <div className="inner">
-                                <h3>{totalToRead}</h3>
-                                    <p>Books In Reading List</p>
+                                    <h3>{readPercentage}%</h3>
+                                    <p>Read Percentage</p>
                                 </div>
                                 <div className="icon">
                                     <i className="ion ion-pie-graph"/>
                                 </div>
-                                <a href="#" className="small-box-footer">
-                                    More info <i className="fas fa-arrow-circle-right"/>
-                                </a>
+                                <div style={{height: 30}}></div>
                             </div>
                         </div>
                     </div>
