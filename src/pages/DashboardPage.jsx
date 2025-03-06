@@ -12,14 +12,17 @@ function DashboardPage(){
     const [totalCurrentlyReading, setTotalCurrentlyReading] = useState(0)
     const [totalToRead, setTotalToRead] = useState(0)
     const [readPercentage, setReadPercentage] = useState()
+    const [chartData, setChartData] = useState({
+        'labels': [2024,2025],
+        'data':[12,2],
+    })
 
     var salesChartCanvas = $('#revenue-chart-canvas')
 
     var salesChartData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: chartData.labels,
         datasets: [
             {
-                label: 'Digital Goods',
                 backgroundColor: 'rgba(60,141,188,0.9)',
                 borderColor: 'rgba(60,141,188,0.8)',
                 pointRadius: false,
@@ -27,7 +30,7 @@ function DashboardPage(){
                 pointStrokeColor: 'rgba(60,141,188,1)',
                 pointHighlightFill: '#fff',
                 pointHighlightStroke: 'rgba(60,141,188,1)',
-                data: [28, 48, 40, 19, 86, 27, 90]
+                data: chartData.data
             },
         ]
     }
