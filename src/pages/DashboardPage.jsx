@@ -73,6 +73,7 @@ function DashboardPage(){
             setTotalCurrentlyReading(response.data.data.total_currently_reading)
             setTotalToRead(response.data.data.total_to_read_books)
             setReadPercentage(response.data.data.read_percentage)
+            setChartData(response.data.data.char_data)
         })
     }, []);
 
