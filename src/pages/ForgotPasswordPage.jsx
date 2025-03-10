@@ -16,40 +16,38 @@ function ForgotPasswordPage() {
     }
 
     function goToLogin() {
-        navigate("/");
+        navigate("/login");
     }
 
     return <div className="login-box">
         <div className="login-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
+            <a href="" onClick={goToLogin}><b>My Books</b></a>
         </div>
 
         <div className="card">
             <div className="card-body login-card-body">
                 <p className="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
 
-                <form action="recover-password.html" method="post">
-                    <div className="input-group mb-3">
-                        <input type="email" className="form-control" placeholder="Email"/>
-                        <div className="input-group-append">
-                            <div className="input-group-text">
-                                <span className="fas fa-envelope"></span>
-                            </div>
+                <div className="input-group mb-3">
+                    <input type="email" className="form-control" placeholder="Email"/>
+                    <div className="input-group-append">
+                        <div className="input-group-text">
+                            <span className="fas fa-envelope"></span>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-12">
-                            <button type="submit" className="btn btn-primary btn-block">Request new password</button>
-                        </div>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <button type="submit" className="btn btn-primary btn-block">Request new password</button>
+                    </div>
 
-                    </div>
-                </form>
+                </div>
 
                 <p className="mt-3 mb-1">
-                    <a href=""  onClick={goToLogin} className="text-center">Login</a>
+                    <a href="" onClick={goToLogin} className="text-center">Login</a>
                 </p>
                 <p className="mb-0">
-                    <a href=""  onClick={goToRegistration} className="text-center">Register</a>
+                    <a href="" onClick={goToRegistration} className="text-center">Register</a>
                 </p>
             </div>
 
