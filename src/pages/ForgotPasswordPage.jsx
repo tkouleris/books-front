@@ -1,12 +1,23 @@
 import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 function ForgotPasswordPage() {
+    const navigate = useNavigate();
+
     useEffect(() => {
         document.title = 'My Books - Forgot Password';
         let bodyElement = document.getElementsByTagName('body')[0];
         bodyElement.className = "hold-transition login-page";
 
     }, []);
+
+    function goToRegistration() {
+        navigate("/register");
+    }
+
+    function goToLogin() {
+        navigate("/");
+    }
 
     return <div className="login-box">
         <div className="login-logo">
@@ -35,10 +46,10 @@ function ForgotPasswordPage() {
                 </form>
 
                 <p className="mt-3 mb-1">
-                    <a href="login.html">Login</a>
+                    <a href=""  onClick={goToLogin} className="text-center">Login</a>
                 </p>
                 <p className="mb-0">
-                    <a href="register.html" className="text-center">Register a new membership</a>
+                    <a href=""  onClick={goToRegistration} className="text-center">Register</a>
                 </p>
             </div>
 
