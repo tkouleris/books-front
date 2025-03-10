@@ -34,6 +34,10 @@ function LoginPage() {
         navigate("/register");
     }
 
+    function goToForgotPassword() {
+        navigate("/forgot-password");
+    }
+
     return <div className="login-box">
 
         <div className="login-box">
@@ -91,7 +95,10 @@ function LoginPage() {
                         {/*<a href="forgot-password.html">I forgot my password</a>*/}
                     </p>
                     <p className="mb-0">
-                        <a href="" className="text-center" onClick={goToRegistration}>Register a new membership</a>
+                        <a href="" className="text-center" onClick={goToRegistration}>Register</a>
+                    </p>
+                    <p className="mb-0">
+                        <a href="" className="text-center" onClick={goToForgotPassword}>Forgot my password</a>
                     </p>
                 </div>
             </div>
