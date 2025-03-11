@@ -1,8 +1,11 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {send_forgot_password_request} from "../utils/http.jsx";
 
 function ForgotPasswordPage() {
     const navigate = useNavigate();
+
+    const [email, setEmail] = useState('')
 
     useEffect(() => {
         document.title = 'My Books - Forgot Password';
@@ -19,6 +22,12 @@ function ForgotPasswordPage() {
         navigate("/login");
     }
 
+    function handleForgotPasswordRequest(){
+        send_forgot_password_request(email).then( ()=>{
+            alert('Check your email');
+        })
+    }
+
     return <div className="login-box">
         <div className="login-logo">
             <a href="" onClick={goToLogin}><b>My Books</b></a>
@@ -29,7 +38,7 @@ function ForgotPasswordPage() {
                 <p className="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
 
                 <div className="input-group mb-3">
-                    <input type="email" className="form-control" placeholder="Email"/>
+                    <input type="email" onChange={(e)=>setEmail(e.target.value)} className="form-control" placeholder="Email"/>
                     <div className="input-group-append">
                         <div className="input-group-text">
                             <span className="fas fa-envelope"></span>
@@ -38,7 +47,7 @@ function ForgotPasswordPage() {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <button type="submit" className="btn btn-primary btn-block">Request new password</button>
+                        <button type="submit" onClick={handleForgotPasswordRequest} className="btn btn-primary btn-block">Request new password</button>
                     </div>
 
                 </div>

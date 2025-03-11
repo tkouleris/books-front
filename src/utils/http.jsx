@@ -19,7 +19,7 @@ import {
     add_to_read_list,
     reorder_to_read_list,
     dashboard,
-    user_verification, verification_request
+    user_verification, verification_request, forgot_password_request
 } from '../../config.jsx'
 
 
@@ -321,6 +321,19 @@ export async function send_verification_request(token){
 
     const response = await axios.post(
         verification_request.url, {}, headers
+    ).catch((error)=>console.log(error))
+    return {'data': response.data}
+}
+
+export async function send_forgot_password_request(email){
+    let headers = {
+        headers: {
+            "content-type": "application/json",
+        }
+    }
+
+    const response = await axios.post(
+        forgot_password_request.url, {email:email}, headers
     ).catch((error)=>console.log(error))
     return {'data': response.data}
 }
