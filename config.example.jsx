@@ -19,3 +19,4 @@ export const swap_to_read_list = {url:'', method: 'post'};
 export const dashboard = {url:'', method: 'get'};
 export const user_verification = {url:'', method: 'post'};
 export const verification_request = {url:'', method: 'post'};
+export const forgot_password_request = {url:'', method: 'post'};
