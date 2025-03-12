@@ -20,3 +20,4 @@ export const dashboard = {url:'', method: 'get'};
 export const user_verification = {url:'', method: 'post'};
 export const verification_request = {url:'', method: 'post'};
 export const forgot_password_request = {url:'', method: 'post'};
+export const recover_password = {url:'', method: 'post'};
