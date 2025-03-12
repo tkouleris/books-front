@@ -16,6 +16,7 @@ import DisplayPage from "./pages/DisplayPage.jsx";
 import ToReadPage from "./pages/ToReadPage.jsx";
 import UserVerificationPage from "./pages/UserVerificationPage.jsx";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage.jsx";
+import RecoverPasswordPage from "./pages/RecoverPasswordPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
     {
         path: '/forgot-password',
         element: <ForgotPasswordPage />,
+    },
+    {
+        path: '/recover-password/:token',
+        element: <RecoverPasswordPage />,
     },
     {
         path: '/user/verify/:token',
