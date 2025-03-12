@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
+import {recover_password_handler} from "../utils/http.jsx";
 
 function RecoverPasswordPage() {
     let {token} = useParams();
@@ -38,7 +39,10 @@ function RecoverPasswordPage() {
             alert(errorMsg)
             return false;
         }
-
+        recover_password_handler(token, password).then((res)=>{
+            alert(res.data.message)
+            goToLogin()
+        })
     }
 
     return <div className="login-box">
