@@ -42,7 +42,7 @@ function LoginPage() {
 
         <div className="login-box">
             <div className="login-logo">
-                <a href=""><b>My Books</b></a>
+                <a href=""><b><i className="fas fa-book-open "></i> Books</b></a>
             </div>
 
             <div className="card">

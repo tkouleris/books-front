@@ -25,12 +25,10 @@ function SideNav() {
 
     return <div>
         <aside className="main-sidebar sidebar-dark-primary elevation-4">
+            <div className="brand-link" style={{textAlign: "center"}}>
+                <i className="fas fa-book-open "></i> <span className="brand-text font-weight-light"> Books</span>
+            </div>
 
-            <a href="" onClick={goToDashboard} className="brand-link">
-                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" className="brand-image img-circle elevation-3"
-                     style={{'opacity': '.8'}} />
-                <span className="brand-text font-weight-light">Books</span>
-            </a>
 
 
             <div className="sidebar">

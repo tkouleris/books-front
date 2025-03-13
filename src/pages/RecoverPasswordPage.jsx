@@ -47,7 +47,7 @@ function RecoverPasswordPage() {
 
     return <div className="login-box">
         <div className="login-logo">
-            <a href="" onClick={goToLogin}><b>My Books</b></a>
+            <a href="" onClick={goToLogin}><b><i className="fas fa-book-open "></i> Books</b></a>
         </div>
 
         <div className="card">
@@ -85,7 +85,7 @@ function RecoverPasswordPage() {
 
 
                 <p className="mt-3 mb-1">
-                    <a href="login.html">Login</a>
+                    <a href="" onClick={goToLogin}>Login</a>
                 </p>
             </div>
         </div>

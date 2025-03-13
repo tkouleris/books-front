@@ -52,7 +52,7 @@ export default function RegistrationPage() {
 
     return (
         <div className={"register-box"}>
-            <div className={"register-logo"}><a href=""><b>My Books</b></a></div>
+            <div className={"register-logo"}><a href=""><b><i className="fas fa-book-open "></i> Books</b></a></div>
             <div className={"card"}>
                 <div className={"card-body register-card-body"}>
                     <p className={"register-box-msg"}>Register a new membership</p>
