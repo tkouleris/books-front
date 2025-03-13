@@ -2,7 +2,7 @@ function Footer() {
     return <div>
 
   <footer className="main-footer">
-    <strong>Made by <a href="https://tkouleris.eu">tkouleris</a></strong>
+    <strong>Developed by <a href="https://tkouleris.eu">tkouleris</a></strong>
 
 
     <div className="float-right d-none d-sm-inline-block">
