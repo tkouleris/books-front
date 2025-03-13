@@ -22,7 +22,7 @@ function BookForm() {
                 setBookId(res.data.data.book.id)
                 setImageUrl(res.data.data.book.image)
                 setBookReadings(res.data.data.readings)
-                document.title = 'My Books - ' + res.data.data.book.title;
+                document.title = 'Books - ' + res.data.data.book.title;
             })
         }
     }, []);

@@ -10,7 +10,7 @@ export default function RegistrationPage() {
     const [password, setPassword] = useState('')
 
     useEffect(() => {
-        document.title = 'My Books - Registration';
+        document.title = 'Books - Registration';
         let bodyElement = document.getElementsByTagName('body')[0];
         bodyElement.className = "register-page bg-body-secondary";
 

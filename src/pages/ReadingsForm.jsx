@@ -24,7 +24,7 @@ function ReadingsForm(){
     const zeroPad = (num, places) => String(num).padStart(places, '0')
 
     useEffect(() => {
-        document.title = 'My Books';
+        document.title = 'Books';
         fetchBooks(window.localStorage.token).then(res =>{
             setBookId(res.data.data.books[0].id)
             setBooks(res.data.data.books)

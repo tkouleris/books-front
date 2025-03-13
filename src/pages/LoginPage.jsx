@@ -8,7 +8,7 @@ function LoginPage() {
     const [password, setPassword] = useState('')
 
     useEffect(() => {
-        document.title = 'My Books - Login';
+        document.title = 'Books - Login';
         let bodyElement = document.getElementsByTagName('body')[0];
         bodyElement.className = "hold-transition login-page";
 

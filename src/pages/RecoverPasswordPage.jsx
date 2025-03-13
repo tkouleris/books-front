@@ -11,7 +11,7 @@ function RecoverPasswordPage() {
 
 
     useEffect(() => {
-        document.title = 'My Books - Recover Password';
+        document.title = 'Books - Recover Password';
         let bodyElement = document.getElementsByTagName('body')[0];
         bodyElement.className = "hold-transition login-page";
 

@@ -12,7 +12,7 @@ function MyReadings(){
     const [totalPages, setTotalPages] = useState(1)
 
     useEffect(() => {
-        document.title = 'My Readings';
+        document.title = 'Books - My Readings';
         fetchReadings(window.localStorage.token, currentPage).then(res =>{
             setReadings(res.data.data.readings)
             setCurrentPage(res.data.data.current_page)

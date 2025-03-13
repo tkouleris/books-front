@@ -14,7 +14,7 @@ function MyBooks() {
     const [searchTitle, setSearchTitle] = useState()
 
     useEffect(() => {
-        document.title = 'My Books';
+        document.title = 'Books';
         fetchBooks(window.localStorage.token, 1).then(res => {
             setBooks(res.data.data.books)
             setCurrentPage(res.data.data.current_page)

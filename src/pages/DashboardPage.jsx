@@ -66,7 +66,7 @@ function DashboardPage(){
     useEffect(() => {
         let bodyElement = document.getElementsByTagName('body')[0];
         bodyElement.className = "hold-transition sidebar-mini layout-fixed";
-        document.title = 'My Books - Dashboard';
+        document.title = 'Books - Dashboard';
 
         dashboard_data(window.localStorage.token).then((response)=>{
             setTotalBooks(response.data.data.total_books)

@@ -18,7 +18,7 @@ function ProfilePage() {
     const [avatarChanged, setAvatarChanged] = useState(false)
 
     useEffect(() => {
-        document.title = 'My Books - Profile';
+        document.title = 'Books - Profile';
 
         fetchProfile(window.localStorage.token).then(res=>{
             setEmail(res.data.data.email)

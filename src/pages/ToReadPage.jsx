@@ -90,7 +90,7 @@ export default function DragDropList() {
     const [items, setItems] = useState([{id: 1, book: {}}]);
 
     useEffect(() => {
-        document.title = 'My Books - Reading List';
+        document.title = 'Books - Reading List';
         fetchToReadList(window.localStorage.token).then(response => {
             setItems(response.data.data)
         })

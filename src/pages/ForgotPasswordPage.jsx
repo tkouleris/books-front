@@ -8,7 +8,7 @@ function ForgotPasswordPage() {
     const [email, setEmail] = useState('')
 
     useEffect(() => {
-        document.title = 'My Books - Forgot Password';
+        document.title = 'Books - Forgot Password';
         let bodyElement = document.getElementsByTagName('body')[0];
         bodyElement.className = "hold-transition login-page";
 
